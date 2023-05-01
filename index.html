@@ -32,11 +32,6 @@
 			color: #333;
 			box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 		}
-		#output {
-			margin-top: 30px;
-			font-size: 30px;
-			text-align: center;
-		}
 		.bold {
 			font-weight: bold;
 			background: linear-gradient(45deg, #ff0000, #ffffff);
@@ -46,9 +41,8 @@
 	</style>
 </head>
 <body>
-	<h1>Easy Text Reader</h1>
+	<h1>Bold Initials Website</h1>
 	<input type="text" id="myTextbox" placeholder="Type your text here...">
-	<div id="output"></div>
 	<script>
 		let textBox = document.getElementById("myTextbox");
 		textBox.addEventListener("input", function(event) {
@@ -68,7 +62,7 @@
 			}
 			let suffix = textBox.value.substring(lastIndex);
 			output += suffix;
-			document.getElementById("output").innerHTML = output;
+			textBox.innerHTML = output;
 		});
 	</script>
 </body>
