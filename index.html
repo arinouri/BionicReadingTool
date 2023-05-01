@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Website</title>
+	<style>
+		input[type="text"] {
+			padding: 10px;
+			font-size: 16px;
+			width: 400px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+		}
+	</style>
+</head>
+<body>
+	<div style="text-align:center;">
+		<input type="text" id="myTextbox">
+	</div>
+	<div id="output" style="text-align:center;"></div>
+	<script>
+		let textBox = document.getElementById("myTextbox");
+		textBox.addEventListener("keyup", function(event) {
+			let words = textBox.value.split(" ");
+			let output = "";
+			for (let i = 0; i < words.length; i++) {
+				let boldedWord = words[i].substring(0, 3);
+				if (boldedWord.length === 3) {
+					boldedWord = "<b>" + boldedWord + "</b>" + words[i].substring(3);
+				}
+				output += boldedWord + " ";
+			}
+			document.getElementById("output").innerHTML = output;
+		});
+	</script>
+</body>
+</html>
