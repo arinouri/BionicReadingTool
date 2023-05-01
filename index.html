@@ -23,10 +23,11 @@
 			let words = textBox.value.split(" ");
 			let output = "";
 			for (let i = 0; i < words.length; i++) {
-				let boldedWord = words[i].substring(0, 3);
-				if (boldedWord.length === 3) {
-					boldedWord = "<b>" + boldedWord + "</b>" + words[i].substring(3);
-				}
+				let wordLength = words[i].length;
+				let boldedLength = Math.ceil(wordLength * 0.3); // calculate the number of initials to bold (30% of the word length rounded up)
+				let boldedLetters = words[i].substring(0, boldedLength); // get the bolded initials
+				let unboldedLetters = words[i].substring(boldedLength); // get the unbolded letters
+				let boldedWord = "<b>" + boldedLetters + "</b>" + unboldedLetters; // combine the bolded and unbolded letters
 				output += boldedWord + " ";
 			}
 			document.getElementById("output").innerHTML = output;
