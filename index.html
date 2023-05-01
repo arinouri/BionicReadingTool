@@ -3,18 +3,41 @@
 <head>
 	<title>My Website</title>
 	<style>
+		body {
+			background-color: #f2f2f2;
+			font-family: Arial, sans-serif;
+		}
+		h1 {
+			text-align: center;
+			font-size: 36px;
+			margin-top: 50px;
+			margin-bottom: 30px;
+			color: #333;
+		}
 		input[type="text"] {
 			padding: 10px;
 			font-size: 16px;
 			width: 400px;
 			border: 1px solid #ccc;
 			border-radius: 5px;
+			background-color: #fff;
+			color: #333;
+			box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+		}
+		#output {
+			margin-top: 30px;
+			font-size: 20px;
+			color: #333;
+		}
+		.bold {
+			font-weight: bold;
 		}
 	</style>
 </head>
 <body>
+	<h1>Bold Initials Website</h1>
 	<div style="text-align:center;">
-		<input type="text" id="myTextbox">
+		<input type="text" id="myTextbox" placeholder="Type your text here...">
 	</div>
 	<div id="output" style="text-align:center;"></div>
 	<script>
@@ -24,10 +47,10 @@
 			let output = "";
 			for (let i = 0; i < words.length; i++) {
 				let wordLength = words[i].length;
-				let boldedLength = Math.ceil(wordLength * 0.3); // calculate the number of initials to bold (30% of the word length rounded up)
-				let boldedLetters = words[i].substring(0, boldedLength); // get the bolded initials
-				let unboldedLetters = words[i].substring(boldedLength); // get the unbolded letters
-				let boldedWord = "<b>" + boldedLetters + "</b>" + unboldedLetters; // combine the bolded and unbolded letters
+				let boldedLength = Math.ceil(wordLength * 0.3);
+				let boldedLetters = words[i].substring(0, boldedLength);
+				let unboldedLetters = words[i].substring(boldedLength);
+				let boldedWord = "<span class='bold'>" + boldedLetters + "</span>" + unboldedLetters;
 				output += boldedWord + " ";
 			}
 			document.getElementById("output").innerHTML = output;
