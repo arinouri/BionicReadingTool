@@ -6,30 +6,27 @@
 		body {
 			background-color: #424242;
 			font-family: Arial, sans-serif;
+			color: #fff;
 		}
 		h1 {
 			text-align: center;
 			font-size: 36px;
 			margin-top: 50px;
 			margin-bottom: 30px;
-			color: #fff;
 		}
 		input[type="text"] {
 			padding: 10px;
 			font-size: 16px;
-			width: 400px;
+			width: 100%;
 			border: none;
 			border-radius: 5px;
 			background-color: #D2B48C;
 			color: #333;
 			box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-			margin: 0 auto;
-			display: block;
 		}
 		#output {
 			margin-top: 30px;
 			font-size: 20px;
-			color: #fff;
 			text-align: center;
 		}
 		.bold {
@@ -39,23 +36,27 @@
 </head>
 <body>
 	<h1>Bold Initials Website</h1>
-	<div style="text-align:center;">
-		<input type="text" id="myTextbox" placeholder="Type your text here...">
-	</div>
+	<input type="text" id="myTextbox" placeholder="Type your text here...">
 	<div id="output"></div>
 	<script>
 		let textBox = document.getElementById("myTextbox");
-		textBox.addEventListener("keyup", function(event) {
+		textBox.addEventListener("input", function(event) {
 			let words = textBox.value.split(" ");
 			let output = "";
+			let lastIndex = 0;
 			for (let i = 0; i < words.length; i++) {
 				let wordLength = words[i].length;
 				let boldedLength = Math.ceil(wordLength * 0.3);
 				let boldedLetters = words[i].substring(0, boldedLength);
 				let unboldedLetters = words[i].substring(boldedLength);
 				let boldedWord = "<span class='bold'>" + boldedLetters + "</span>" + unboldedLetters;
-				output += boldedWord + " ";
+				let index = textBox.value.indexOf(words[i], lastIndex);
+				let prefix = textBox.value.substring(lastIndex, index);
+				output += prefix + boldedWord;
+				lastIndex = index + words[i].length;
 			}
+			let suffix = textBox.value.substring(lastIndex);
+			output += suffix;
 			document.getElementById("output").innerHTML = output;
 		});
 	</script>
