@@ -14,7 +14,7 @@
 			justify-content: center;
 			align-items: center;
 			height: 100vh;
-			margin: 25% 0 0 0;
+			margin: 0;
 		}
 		h1 {
 			text-align: center;
@@ -32,6 +32,11 @@
 			color: #333;
 			box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 		}
+		#output {
+			margin-top: 30px;
+			font-size: 30px;
+			text-align: center;
+		}
 		.bold {
 			font-weight: bold;
 			background: linear-gradient(45deg, #ff0000, #ffffff);
@@ -43,6 +48,7 @@
 <body>
 	<h1>Bold Initials Website</h1>
 	<input type="text" id="myTextbox" placeholder="Type your text here...">
+	<div id="output"></div>
 	<script>
 		let textBox = document.getElementById("myTextbox");
 		textBox.addEventListener("input", function(event) {
@@ -62,7 +68,7 @@
 			}
 			let suffix = textBox.value.substring(lastIndex);
 			output += suffix;
-			textBox.innerHTML = output;
+			document.getElementById("output").innerHTML = output;
 		});
 	</script>
 </body>
