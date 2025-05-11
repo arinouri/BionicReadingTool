@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Reader View | Read Easier</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      background-color: #121212;
+      color: #ffffff;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    textarea {
+      width: 100%;
+      max-width: 700px;
+      height: 120px;
+      padding: 15px;
+      font-size: 1.1rem;
+      background: #1e1e1e;
+      color: #fff;
+      border: 1px solid #333;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      resize: vertical;
+    }
+
+    .controls {
+      margin-bottom: 20px;
+    }
+
+    .controls button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      background: #333;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .reader-box {
+      max-width: 800px;
+      background: #1e1e1e;
+      padding: 25px;
+      font-size: 1.2rem;
+      border-radius: 10px;
+      white-space: pre-wrap;
+      margin-top: 20px;
+    }
+
+    a {
+      color: #aaa;
+      text-decoration: underline;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Reader View</h1>
+  <p>Paste messy HTML content or webpage text below. Click “Simplify” to clean it up for easier reading.</p>
+
+  <textarea id="readerInput" placeholder="Paste raw HTML or copied website text here..."></textarea>
+
+  <div class="controls">
+    <button onclick="simplifyText()">🧹 Simplify</button>
+  </div>
+
+  <div class="reader-box" id="readerBox">Cleaned content will appear here.</div>
+
+  <a href="../read-easier.html">← Back to Read Easier Home</a>
+
+  <script>
+    function simplifyText() {
+      const rawInput = document.getElementById("readerInput").value;
+      const readerBox = document.getElementById("readerBox");
+
+      // Create a virtual element to parse HTML
+      const tempDiv = document.createElement("div");
+      tempDiv.innerHTML = rawInput;
+
+      // Remove scripts and styles
+      tempDiv.querySelectorAll("script, style, iframe, nav, footer, header, button").forEach(el => el.remove());
+
+      // Extract just the readable text
+      const cleanText = tempDiv.textContent || tempDiv.innerText || "";
+
+      readerBox.textContent = cleanText.trim();
+    }
+  </script>
+
+</body>
+</html>

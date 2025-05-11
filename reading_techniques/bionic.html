@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bionic Reading Assistant</title>
+  <style>
+    :root {
+      --bg-dark: #121212;
+      --text-dark: #e0e0e0;
+      --input-dark: #1e1e1e;
+      --bg-light: #ffffff;
+      --text-light: #121212;
+      --input-light: #f0f0f0;
+      --accent: #ffffff;
+      --grey: #888888;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      line-height: 1.7;
+      transition: background 0.4s, color 0.4s;
+      align-items: center;
+      justify-content: center;
+
+    }
+
+    body.dark {
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    body.light {
+      background-color: var(--bg-light);
+      color: var(--text-light);
+    }
+
+    header, section, footer {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .description {
+      text-align: center;
+      color: var(--grey);
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: 15px;
+      font-size: 1.1rem;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #333;
+      resize: vertical;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    body.dark textarea {
+      background-color: var(--input-dark);
+      color: var(--text-dark);
+    }
+
+    body.light textarea {
+      background-color: var(--input-light);
+      color: var(--text-light);
+    }
+
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .controls button {
+      background: none;
+      border: 1px solid #666;
+      color: inherit;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    a {
+      align-items: center;
+      color: #aaa;
+      text-decoration: underline;
+      margin-top: 30px;
+    }
+
+    .controls button:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    #output {
+      font-size: 1.4rem;
+      line-height: 1.8;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+
+    .bold {
+      font-weight: bold;
+      color: inherit;
+      text-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
+    }
+
+    .section-heading {
+      font-size: 1.8rem;
+      margin: 40px 0 15px;
+    }
+
+    ul {
+      color: var(--grey);
+      margin-left: 20px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      color: var(--grey);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body class="dark">
+  <header>
+    <h1>Bionic Reading Assistant</h1>
+    <p class="description">
+      A simple tool to help you read faster and better by bolding the first part of each word. Great for focus, comprehension, and accessibility.
+    </p>
+    <div class="controls">
+      <button onclick="toggleTheme()">Toggle Light/Dark</button>
+      <button onclick="copyOutput()">Copy Text</button>
+    </div>
+  </header>
+
+  <section>
+    <textarea id="myTextbox" placeholder="Paste or type your paragraph here..."></textarea>
+    <div id="output"></div>
+  </section>
+
+  <a href="../read-easier.html">← Back to Read Easier Home</a>
+
+
+
+  <footer>
+    &copy; 2025 BionicReader | Empowering Neurodiverse Minds 🧠
+  </footer>
+
+  <script>
+    const textBox = document.getElementById("myTextbox");
+    const outputDiv = document.getElementById("output");
+
+    function applyBionic(text) {
+      const words = text.split(/(\s+)/);
+      return words.map(word => {
+        if (word.trim() === "") return word;
+        const boldLength = Math.ceil(word.length * 0.35);
+        return `<span class="bold">${word.slice(0, boldLength)}</span>${word.slice(boldLength)}`;
+      }).join("");
+    }
+
+    textBox.addEventListener("input", () => {
+      outputDiv.innerHTML = applyBionic(textBox.value);
+    });
+
+    function toggleTheme() {
+      const body = document.body;
+      body.classList.toggle("dark");
+      body.classList.toggle("light");
+    }
+
+    function copyOutput() {
+      const tempEl = document.createElement("textarea");
+      tempEl.value = outputDiv.innerText;
+      document.body.appendChild(tempEl);
+      tempEl.select();
+      document.execCommand("copy");
+      document.body.removeChild(tempEl);
+      alert("Text copied to clipboard!");
+    }
+  </script>
+</body>
+</html>

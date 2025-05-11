@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Read Easier - Assistive Reading Tools</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background: #121212;
+      color: #ffffff;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      text-align: center;
+      padding: 50px 20px 20px;
+    }
+    header h1 {
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+    }
+    header p {
+      color: #aaa;
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .tool {
+      background: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      transition: 0.3s;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+    .tool:hover {
+      border-color: #444;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    }
+    .tool h3 {
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+    }
+    .tool p {
+      font-size: 0.95rem;
+      color: #ccc;
+    }
+    footer {
+      text-align: center;
+      color: #777;
+      padding: 30px 10px;
+      font-size: 0.9rem;
+    }
+    #dynamicText {
+  font-size: 1.5rem;
+  margin-top: 10px;
+  color: #aaa;
+    }
+    #typedText {
+    color: #ffffff;
+    font-weight: bold;
+    }
+    #typedText::after {
+    content: '|';
+    animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+    0%, 50% { opacity: 1; }
+    50.01%, 100% { opacity: 0; }
+    }
+
+    -------
+
+    
+    
+
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Read Easier</h1>
+    <p id="dynamicText" class="description">with <span id="typedText"></span></p>
+
+    <p>A collection of tools designed to improve your reading focus, speed, and accessibility.</p>
+  </header>
+
+  <div class="grid">
+    <div class="tool" onclick="location.href='reading_techniques/bionic.html'">
+      <h3>Bionic Reading</h3>
+      <p>Boldens parts of words to guide your eyes and boost reading speed.</p>
+    </div>
+    <div class="tool" onclick="location.href='reading_techniques/spritz.html'">
+      <h3>Spritz Reader</h3>
+      <p>Displays one word at a time for reduced eye movement.</p>
+    </div>
+    <div class="tool" onclick="location.href='reading_techniques/chunking.html'">
+      <h3>Chunking</h3>
+      <p>Breaks large blocks of text into manageable chunks.</p>
+    </div>
+    <div class="tool" onclick="location.href='reading_techniques/tts.html'">
+      <h3>Text-to-Speech</h3>
+      <p>Convert written text into spoken words.</p>
+    </div>
+    <div class="tool" onclick="location.href='reading_techniques/highlight.html'">
+      <h3>Line Highlighting</h3>
+      <p>Highlights one line at a time to reduce distractions.</p>
+    </div>
+    <div class="tool" onclick="location.href='reading_techniques/reader.html'">
+      <h3>Reader View</h3>
+      <p>Removes clutter and distractions from web pages.</p>
+    </div>
+    <div class="tool" onclick="location.href='reading_techniques/overlay.html'">
+      <h3>Colored Overlays</h3>
+      <p>Apply visual filters to make reading easier for dyslexia and more.</p>
+    </div>
+    <div class="tool" style="background:#181818;">
+        <h3>About Read Easier</h3>
+        <p>
+          Created by <strong><a href="https://github.com/arinouri" target="_blank" style="color:#6ec1e4;">Arian N.</a></strong><br>
+          Open-source tools to support focus and accessible reading.<br><br>
+          &copy; 2025 Read Easier. All rights reserved.<br>
+          <a href="tos.html">Terms</a> | <a href="privacy.html">Privacy</a>
+
+        </p>
+      </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Read Easier | Built to empower every reader 🧠
+  </footer>
+
+  <div class="tool" style="background:#181818;">
+    <h3>Support This Project</h3>
+    <p>
+      If you find Read Easier helpful, consider making a small donation 🙏<br><br>
+      <form action="https://www.paypal.com/ncp/payment/WR7SHAP7JP2JJ
+      " method="post" target="_blank">
+        <input type="hidden" name="business" value="arinouri.ca@gmail.com">
+        <input type="hidden" name="no_recurring" value="0">
+        <input type="hidden" name="currency_code" value="CAD">
+        <input type="submit" value="Donate with PayPal" style="padding:10px 20px; background:#0070ba; color:#fff; border:none; border-radius:6px; cursor:pointer;">
+      </form>
+    </p>
+  </div>
+
+  <script>
+    const words = [
+      "Spritz Reading",
+      "Bionic Reading",
+      "Chunking",
+      "Text-to-Speech",
+      "Line Highlighting",
+      "Reader View",
+      "Colored Overlays"
+    ];
+  
+    const typedText = document.getElementById("typedText");
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+  
+    const typingSpeed = 100;
+    const deletingSpeed = 50;
+    const pauseBetweenWords = 1500;
+    const initialDelay = 1000;
+  
+    function typeEffect() {
+      const currentWord = words[wordIndex];
+  
+      if (!isDeleting) {
+        typedText.textContent = currentWord.substring(0, charIndex + 1);
+        charIndex++;
+  
+        if (charIndex === currentWord.length) {
+          isDeleting = true;
+          setTimeout(typeEffect, pauseBetweenWords);
+          return;
+        }
+      } else {
+        typedText.textContent = currentWord.substring(0, charIndex - 1);
+        charIndex--;
+  
+        if (charIndex === 0) {
+          isDeleting = false;
+          wordIndex = (wordIndex + 1) % words.length;
+          setTimeout(typeEffect, 500);
+          return;
+        }
+      }
+  
+      setTimeout(typeEffect, isDeleting ? deletingSpeed : typingSpeed);
+    }
+  
+    setTimeout(typeEffect, initialDelay);
+  </script>
+  
+  </script>
+  
+  
+</body>
+</html>

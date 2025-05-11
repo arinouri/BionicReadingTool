@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Text-to-Speech (TTS) | Read Easier</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      background-color: #121212;
+      color: #ffffff;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    textarea {
+      width: 100%;
+      max-width: 700px;
+      height: 120px;
+      padding: 15px;
+      font-size: 1.1rem;
+      background: #1e1e1e;
+      color: #fff;
+      border: 1px solid #333;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      resize: vertical;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 25px;
+      justify-content: center;
+    }
+
+    .controls select,
+    .controls input,
+    .controls button {
+      padding: 10px 15px;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: none;
+      background: #333;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    a {
+      color: #aaa;
+      margin-top: 30px;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Text-to-Speech</h1>
+  <p>Paste your text and press “Speak” to hear it read aloud.</p>
+
+  <textarea id="ttsInput" placeholder="Enter text to read aloud..."></textarea>
+
+  <div class="controls">
+    <select id="voiceSelect"></select>
+    <label>Speed:
+      <input type="number" id="rate" value="1" step="0.1" min="0.5" max="2">
+    </label>
+    <button onclick="speakText()">🔊 Speak</button>
+    <button onclick="pauseSpeech()">⏸ Pause</button>
+    <button onclick="resumeSpeech()">▶️ Resume</button>
+    <button onclick="stopSpeech()">🛑 Stop</button>
+  </div>
+
+  <a href="../read-easier.html">← Back to Read Easier Home</a>
+
+  <script>
+    const synth = window.speechSynthesis;
+    const voiceSelect = document.getElementById("voiceSelect");
+    const rateInput = document.getElementById("rate");
+    let utterance;
+
+    function populateVoices() {
+      const voices = synth.getVoices();
+      voiceSelect.innerHTML = "";
+      voices.forEach((voice, index) => {
+        const option = document.createElement("option");
+        option.value = index;
+        option.textContent = `${voice.name} (${voice.lang})`;
+        voiceSelect.appendChild(option);
+      });
+    }
+
+    populateVoices();
+    if (speechSynthesis.onvoiceschanged !== undefined) {
+      speechSynthesis.onvoiceschanged = populateVoices;
+    }
+
+    function speakText() {
+      const text = document.getElementById("ttsInput").value;
+      if (!text.trim()) return;
+      stopSpeech();
+
+      utterance = new SpeechSynthesisUtterance(text);
+      const selectedVoice = synth.getVoices()[voiceSelect.value];
+      utterance.voice = selectedVoice;
+      utterance.rate = parseFloat(rateInput.value);
+
+      synth.speak(utterance);
+    }
+
+    function pauseSpeech() {
+      if (synth.speaking && !synth.paused) {
+        synth.pause();
+      }
+    }
+
+    function resumeSpeech() {
+      if (synth.paused) {
+        synth.resume();
+      }
+    }
+
+    function stopSpeech() {
+      synth.cancel();
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Spritz Reader | Read Easier</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background: #121212;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    textarea {
+      width: 100%;
+      max-width: 600px;
+      height: 120px;
+      padding: 15px;
+      font-size: 1.1rem;
+      background: #1e1e1e;
+      color: #fff;
+      border: 1px solid #333;
+      border-radius: 8px;
+      resize: vertical;
+      margin-bottom: 20px;
+    }
+
+    .spritz-box {
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.4rem;
+      font-weight: bold;
+      background: #1e1e1e;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 400px;
+      margin: 20px 0;
+    }
+
+    .controls {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .controls button,
+    .controls input {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      background: #333;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .controls input {
+      width: 60px;
+      text-align: center;
+    }
+
+    a {
+      color: #aaa;
+      margin-top: 20px;
+      text-decoration: underline;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Spritz Reader</h1>
+  <p>Paste some text below and press play to start speed reading one word at a time.</p>
+
+  <textarea id="spritzInput" placeholder="Paste your paragraph here..."></textarea>
+
+  <div class="controls">
+    <button onclick="startSpritz()">▶️ Play</button>
+    <button onclick="pauseSpritz()">⏸️ Pause</button>
+    <label>Speed (wpm): <input id="speedControl" type="number" value="300"></label>
+  </div>
+
+  <div class="spritz-box" id="spritzBox">Ready</div>
+
+  <a href="../read-easier.html">← Back to Read Easier Home</a>
+
+  <script>
+    let words = [];
+    let index = 0;
+    let interval = null;
+
+    function startSpritz() {
+      const input = document.getElementById("spritzInput").value;
+      if (!input.trim()) return;
+      words = input.trim().split(/\s+/);
+      const wpm = parseInt(document.getElementById("speedControl").value) || 300;
+      const delay = 60000 / wpm;
+
+      if (interval) clearInterval(interval);
+      interval = setInterval(showNextWord, delay);
+    }
+
+    function showNextWord() {
+      const box = document.getElementById("spritzBox");
+      if (index >= words.length) {
+        box.textContent = "Done!";
+        clearInterval(interval);
+        return;
+      }
+      box.textContent = words[index];
+      index++;
+    }
+
+    function pauseSpritz() {
+      clearInterval(interval);
+    }
+  </script>
+
+</body>
+</html>
