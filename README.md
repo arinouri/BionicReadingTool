@@ -29,3 +29,43 @@ All pages support light/dark mode toggling. Your preference stays active until t
 ```bash
 git clone https://github.com/yourusername/read-easier.git
 cd read-easier
+```
+2. Run locally (recommended):
+Use the VS Code Live Server extension or Python’s built-in server:
+
+bash
+Copy
+Edit
+python3 -m http.server
+Visit: http://localhost:8000
+
+📁 Project Structure
+bash
+Copy
+Edit
+read-easier/
+├── index.html           ← Homepage with tool links
+├── style.css            ← Global styles for homepage
+├── tos.html             ← Terms of Service
+├── privacy.html         ← Privacy Policy
+├── /bionic/
+│   ├── index.html
+│   ├── css/bionic.css
+│   └── js/bionic.js
+├── /spritz/
+│   └── ...
+├── /chunking/
+│   └── ...
+├── /tts/
+│   └── ...
+└── ...
+✅ Live Demo
+Coming soon: https://you.github.io/read-easier
+
+📜 License
+MIT License. Free to use, modify, or adapt.
+
+🙌 Creator
+Arian Nouri
+💻 GitHub: @arinouri
+📬 Contact: arinouri.ca@gmail.com
