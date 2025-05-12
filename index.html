@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Read Easier - Assistive Reading Tools</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="dark">
+
+  <button id="modeToggle" onclick="toggleMode()">🌙</button>
+
+  <header>
+	<h1>Read Easier</h1>
+	<p id="dynamicText" class="description">with <span id="typedText"></span></p>
+	<p class="tagline">Assistive Reading Tools to Boost Focus and Accessibility</p>
+  </header>
+  
+
+  <main class="grid">
+    <a href="bionic/index.html" class="tool">
+      <h3>Bionic Reading</h3>
+      <p>Boldens parts of words to guide your eyes and improve speed.</p>
+    </a>
+    <a href="spritz/index.html" class="tool">
+      <h3>Spritz Reader</h3>
+      <p>Displays one word at a time for focused reading.</p>
+    </a>
+    <a href="chunking/index.html" class="tool">
+      <h3>Chunking</h3>
+      <p>Breaks long paragraphs into digestible chunks.</p>
+    </a>
+    <a href="tts/index.html" class="tool">
+      <h3>Text-to-Speech</h3>
+      <p>Reads your text aloud using system voices.</p>
+    </a>
+    <a href="highlight/index.html" class="tool">
+      <h3>Line Highlighting</h3>
+      <p>Focuses your attention line by line.</p>
+    </a>
+    <a href="reader/index.html" class="tool">
+      <h3>Reader View</h3>
+      <p>Cleans messy HTML into readable content.</p>
+    </a>
+    <a href="overlay/index.html" class="tool">
+      <h3>Colored Overlays</h3>
+      <p>Applies filters to reduce eye strain and dyslexia symptoms.</p>
+    </a>
+	<div class="tool about">
+		<h3>About</h3>
+		<p>
+		  Created by <a href="https://github.com/arinouri" target="_blank">Arian Nouri</a><br />
+		  Free & open-source assistive tools for neurodiverse readers 🧠<br /><br />
+		  <a href="tos.html">Terms</a> | <a href="privacy.html">Privacy</a><br />
+		  &copy; 2025 Read Easier
+		</p>
+	  </div>
+  </main>
+
+  <footer>
+    Made with ❤️ for accessibility and focus<br />
+    <small>&copy; 2025 Read Easier Project</small>
+  </footer>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle("dark");
+      document.body.classList.toggle("light");
+      document.getElementById("modeToggle").textContent =
+        document.body.classList.contains("dark") ? "🌙" : "☀️";
+    }
+  </script>
+
+<script>
+	const words = [
+	  "Bionic Reading",
+	  "Spritz Reader",
+	  "Chunking",
+	  "Text-to-Speech",
+	  "Line Highlighting",
+	  "Reader View",
+	  "Colored Overlays"
+	];
+  
+	const typedText = document.getElementById("typedText");
+	let wordIndex = 0;
+	let charIndex = 0;
+	let isDeleting = false;
+  
+	const typingSpeed = 100;
+	const deletingSpeed = 50;
+	const pauseBetweenWords = 1500;
+  
+	function typeEffect() {
+	  const currentWord = words[wordIndex];
+  
+	  if (!isDeleting) {
+		typedText.textContent = currentWord.substring(0, charIndex + 1);
+		charIndex++;
+  
+		if (charIndex === currentWord.length) {
+		  isDeleting = true;
+		  setTimeout(typeEffect, pauseBetweenWords);
+		  return;
+		}
+	  } else {
+		typedText.textContent = currentWord.substring(0, charIndex - 1);
+		charIndex--;
+  
+		if (charIndex === 0) {
+		  isDeleting = false;
+		  wordIndex = (wordIndex + 1) % words.length;
+		  setTimeout(typeEffect, 500);
+		  return;
+		}
+	  }
+  
+	  setTimeout(typeEffect, isDeleting ? deletingSpeed : typingSpeed);
+	}
+  
+	setTimeout(typeEffect, 1000);
+  </script>
+  
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Line Highlighting | Read Easier</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/highlight.css" />
+</head>
+<body>
+
+  <h1>Line Highlighting</h1>
+  <p>Paste your paragraph, then use Next/Previous to move through one line at a time.</p>
+
+  <textarea id="highlightInput" placeholder="Paste your paragraph here..."></textarea>
+  <div class="controls">
+    <button onclick="loadLines()">🔄 Load</button>
+  </div>
+
+  <div class="highlight-box" id="highlightBox"></div>
+
+  <div class="controls">
+    <button onclick="prevLine()">⬅ Previous</button>
+    <button onclick="nextLine()">Next ➡</button>
+  </div>
+
+  <a href="../read-easier.html">← Back to Read Easier Home</a>
+
+  <script src="js/highlight.js"></script>
+</body>
+</html>

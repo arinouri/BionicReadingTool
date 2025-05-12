@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bionic Reading Assistant</title>
+  <link rel="stylesheet" href="css/bionic.css">
+</head>
+<body class="dark">
+  <header>
+    <h1>Bionic Reading Assistant</h1>
+    <p class="description">
+      A simple tool to help you read faster and better by bolding the first part of each word.
+    </p>
+    <div class="controls">
+      <button onclick="toggleTheme()">Toggle Light/Dark</button>
+      <button onclick="copyOutput()">Copy Text</button>
+    </div>
+  </header>
+
+  <section>
+    <textarea id="myTextbox" placeholder="Paste or type your paragraph here..."></textarea>
+    <div id="output"></div>
+  </section>
+
+  <a href="../read-easier.html">← Back to Read Easier Home</a>
+
+  <footer>
+    &copy; 2025 BionicReader | Empowering Neurodiverse Minds 🧠
+  </footer>
+
+  <script src="js/bionic.js"></script>
+</body>
+</html>

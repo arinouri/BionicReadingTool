@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Colored Overlays | Read Easier</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/overlay.css" />
+</head>
+<body>
+
+  <h1>Colored Overlays</h1>
+  <p>Use color overlays to make reading easier on your eyes. Great for dyslexia and light sensitivity.</p>
+
+  <div class="controls">
+    <label>
+      Overlay Color:
+      <input type="color" id="overlayColor" value="#00ffcc" onchange="updateOverlay()" />
+    </label>
+    <label>
+      Opacity:
+      <input type="range" id="overlayOpacity" min="0" max="1" step="0.01" value="0.2" onchange="updateOverlay()" />
+    </label>
+  </div>
+
+  <textarea placeholder="Try reading with the overlay...">This is some sample text. You can type your own or paste anything you'd like to read more comfortably using a colored overlay.</textarea>
+
+  <div class="overlay" id="overlay"></div>
+
+  <a href="../read-easier.html">← Back to Read Easier Home</a>
+
+  <script src="js/overlay.js"></script>
+</body>
+</html>

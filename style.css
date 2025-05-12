@@ -1,0 +1,108 @@
+:root {
+    --bg-dark: #121212;
+    --bg-light: #f8f8f8;
+    --text-dark: #ffffff;
+    --text-light: #121212;
+    --card-dark: #1e1e1e;
+    --card-light: #ffffff;
+    --border-dark: #333;
+    --border-light: #ccc;
+  }
+  
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    transition: background 0.4s, color 0.4s;
+  }
+  
+  body.dark {
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
+  }
+  
+  body.light {
+    background-color: var(--bg-light);
+    color: var(--text-light);
+  }
+  
+  header {
+    text-align: center;
+    padding: 40px 20px 20px;
+  }
+  
+  header h1 {
+    font-size: 2.8rem;
+    margin: 0 0 10px;
+  }
+  
+  .tagline {
+    font-size: 1.1rem;
+    color: gray;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .tool {
+    text-decoration: none;
+    background: var(--card-dark);
+    color: inherit;
+    padding: 20px;
+    border-radius: 10px;
+    transition: 0.3s;
+    border: 1px solid transparent;
+  }
+  
+  body.light .tool {
+    background: var(--card-light);
+    border-color: var(--border-light);
+  }
+  
+  .tool:hover {
+    border-color: #666;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  .tool h3 {
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+  }
+  
+  .tool p {
+    font-size: 0.95rem;
+    color: #bbb;
+  }
+  
+  .tool.about p {
+    font-size: 0.9rem;
+    color: inherit;
+  }
+  
+  footer {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #888;
+    padding: 40px 10px;
+  }
+  
+  #modeToggle {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    color: inherit;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    padding: 8px 12px;
+    cursor: pointer;
+    z-index: 1000;
+  }
+  
