@@ -9,3 +9,8 @@ function updateOverlay() {
   // Initialize default overlay on page load
   updateOverlay();
   
+  function toggleTheme() {
+    const body = document.body;
+    body.classList.toggle("dark");
+    body.classList.toggle("light");
+  }

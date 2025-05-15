@@ -10,14 +10,11 @@
 
   <h1>Spritz Reader</h1>
   <p>Paste some text below and press play to start speed reading one word at a time.</p>
-  <div class="controls">
-    <button onclick="toggleTheme()">Toggle Light/Dark</button>
-  </div>
-
 
   <textarea id="spritzInput" placeholder="Paste your paragraph here..."></textarea>
 
   <div class="controls">
+    <button onclick="toggleTheme()">🌓 Toggle Light/Dark</button>
     <button onclick="startSpritz()">▶️ Play</button>
     <button onclick="pauseSpritz()">⏸️ Pause</button>
     <label>Speed (wpm): <input id="speedControl" type="number" value="150"></label>

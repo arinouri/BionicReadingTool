@@ -98,19 +98,20 @@
   
   #output {
     font-size: 1.4rem;
+    color: #cacacaee;
     line-height: 1.8;
     word-wrap: break-word;
     white-space: pre-wrap;
   }
   
   .bold {
+    font-size: 1.5rem;
     font-weight: bold;
-    color: inherit;
-    text-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
   }
   
   a {
-    align-items: center;
     color: #aaa;
     text-decoration: underline;
     margin-top: 30px;

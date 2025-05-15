@@ -6,10 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="css/overlay.css" />
 </head>
-<body>
+<body class="dark">
 
   <h1>Colored Overlays</h1>
   <p>Use color overlays to make reading easier on your eyes. Great for dyslexia and light sensitivity.</p>
+
+  <div class="controls">
+    <button onclick="toggleTheme()">Toggle Light/Dark</button>
+  </div>
 
   <div class="controls">
     <label>
@@ -22,11 +26,17 @@
     </label>
   </div>
 
-  <textarea placeholder="Try reading with the overlay...">This is some sample text. You can type your own or paste anything you'd like to read more comfortably using a colored overlay.</textarea>
+  <textarea placeholder="Try reading with the overlay...">
+This is some sample text. You can type your own or paste anything you'd like to read more comfortably using a colored overlay.
+  </textarea>
 
   <div class="overlay" id="overlay"></div>
 
-  <a href="../read-easier.html">← Back to Read Easier Home</a>
+  <a href="../index.html">← Back to Read Easier Home</a>
+
+  <footer>
+    &copy; 2025 Read Easier | Overlay your focus 🌈
+  </footer>
 
   <script src="js/overlay.js"></script>
 </body>

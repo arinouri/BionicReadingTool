@@ -47,3 +47,10 @@ function resumeSpeech() {
 function stopSpeech() {
   synth.cancel();
 }
+
+
+function toggleTheme() {
+  const body = document.body;
+  body.classList.toggle("dark");
+  body.classList.toggle("light");
+}

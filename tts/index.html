@@ -5,12 +5,15 @@
   <title>Text-to-Speech (TTS) | Read Easier</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="css/tts.css" />
-  <script src="js/tts.js"></script>
-  </head>
-<body>
+</head>
+<body class="dark">
 
   <h1>Text-to-Speech</h1>
   <p>Paste your text and press “Speak” to hear it read aloud.</p>
+
+  <div class="controls">
+    <button onclick="toggleTheme()">Toggle Light/Dark</button>
+  </div>
 
   <textarea id="ttsInput" placeholder="Enter text to read aloud..."></textarea>
 
@@ -25,7 +28,11 @@
     <button onclick="stopSpeech()">🛑 Stop</button>
   </div>
 
-  <a href="../read-easier.html">← Back to Read Easier Home</a>
+  <a href="../index.html">← Back to Read Easier Home</a>
+
+  <footer>
+    &copy; 2025 Read Easier | Let your words speak 🗣️
+  </footer>
 
   <script src="js/tts.js"></script>
 </body>
