@@ -11,11 +11,10 @@
   <button id="modeToggle" onclick="toggleMode()">🌙</button>
 
   <header>
-	<h1>Read Easier</h1>
-	<p id="dynamicText" class="description">with <span id="typedText"></span></p>
-	<p class="tagline">Assistive Reading Tools to Boost Focus and Accessibility</p>
+    <h1>Read Easier</h1>
+    <p id="dynamicText" class="description">with <span id="typedText"></span></p>
+    <p class="tagline">Assistive Reading Tools to Boost Focus and Accessibility</p>
   </header>
-  
 
   <main class="grid">
     <a href="bionic/index.html" class="tool">
@@ -46,15 +45,15 @@
       <h3>Colored Overlays</h3>
       <p>Applies filters to reduce eye strain and dyslexia symptoms.</p>
     </a>
-	<div class="tool about">
-		<h3>About</h3>
-		<p>
-		  Created by <a href="https://github.com/arinouri" target="_blank">Arian Nouri</a><br />
-		  Free & open-source assistive tools for neurodiverse readers 🧠<br /><br />
-		  <a href="tos.html">Terms</a> | <a href="privacy.html">Privacy</a><br />
-		  &copy; 2025 Read Easier
-		</p>
-	  </div>
+    <div class="tool about">
+      <h3>About</h3>
+      <p>
+        Created by <a href="https://github.com/arinouri" target="_blank">Arian Nouri</a><br />
+        Free & open-source assistive tools for neurodiverse readers 🧠<br /><br />
+        <a href="tos.html">Terms</a> | <a href="privacy.html">Privacy</a><br />
+        &copy; 2025 Read Easier
+      </p>
+    </div>
   </main>
 
   <footer>
@@ -62,65 +61,6 @@
     <small>&copy; 2025 Read Easier Project</small>
   </footer>
 
-  <script>
-    function toggleMode() {
-      document.body.classList.toggle("dark");
-      document.body.classList.toggle("light");
-      document.getElementById("modeToggle").textContent =
-        document.body.classList.contains("dark") ? "🌙" : "☀️";
-    }
-  </script>
-
-<script>
-	const words = [
-	  "Bionic Reading",
-	  "Spritz Reader",
-	  "Chunking",
-	  "Text-to-Speech",
-	  "Line Highlighting",
-	  "Reader View",
-	  "Colored Overlays"
-	];
-  
-	const typedText = document.getElementById("typedText");
-	let wordIndex = 0;
-	let charIndex = 0;
-	let isDeleting = false;
-  
-	const typingSpeed = 100;
-	const deletingSpeed = 50;
-	const pauseBetweenWords = 1500;
-  
-	function typeEffect() {
-	  const currentWord = words[wordIndex];
-  
-	  if (!isDeleting) {
-		typedText.textContent = currentWord.substring(0, charIndex + 1);
-		charIndex++;
-  
-		if (charIndex === currentWord.length) {
-		  isDeleting = true;
-		  setTimeout(typeEffect, pauseBetweenWords);
-		  return;
-		}
-	  } else {
-		typedText.textContent = currentWord.substring(0, charIndex - 1);
-		charIndex--;
-  
-		if (charIndex === 0) {
-		  isDeleting = false;
-		  wordIndex = (wordIndex + 1) % words.length;
-		  setTimeout(typeEffect, 500);
-		  return;
-		}
-	  }
-  
-	  setTimeout(typeEffect, isDeleting ? deletingSpeed : typingSpeed);
-	}
-  
-	setTimeout(typeEffect, 1000);
-  </script>
-  
-
+  <script src="script.js"></script>
 </body>
 </html>
