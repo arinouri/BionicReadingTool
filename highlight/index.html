@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Spritz Reader | Read Easier</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/highlight.css">
+</head>
+<body class="dark">
+//
+  <h1>Spritz Reader</h1>
+  <p>Paste some text below and press play to start speed reading one word at a time.</p>
+
+  <textarea id="spritzInput" placeholder="Paste your paragraph here..."></textarea>
+
+  <div class="controls">
+    <button onclick="toggleTheme()">🌓 Toggle Light/Dark</button>
+    <button onclick="startSpritz()">▶️ Play</button>
+    <button onclick="pauseSpritz()">⏸️ Pause</button>
+    <label>Speed (wpm): <input id="speedControl" type="number" value="150"></label>
+  </div>
+
+  <div class="spritz-box" id="spritzBox">Click play to start</div>
+
+  <a href="../index.html">← Back to Read Easier Home</a>
+
+  <footer>
+    &copy; 2025 Read Easier | Speed read your thoughts ⚡
+  </footer>
+
+  <script src="./js/spritz.js"></script>
+</body>
+</html>
