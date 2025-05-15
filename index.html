@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Read Easier - Assistive Reading Tools</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="dark">
+
+  <button id="modeToggle" onclick="toggleMode()">🌙</button>
+
+  <header>
+    <h1>Read Easier</h1>
+    <p id="dynamicText" class="description">with <span id="typedText"></span></p>
+    <p class="tagline">Assistive Reading Tools to Boost Focus and Accessibility</p>
+  </header>
+
+  <main class="grid">
+    <a href="bionic/index.html" class="tool">
+      <h3>Bionic Reading</h3>
+      <p>Boldens parts of words to guide your eyes and improve speed.</p>
+    </a>
+    <a href="spritz/index.html" class="tool">
+      <h3>Spritz Reader</h3>
+      <p>Displays one word at a time for focused reading.</p>
+    </a>
+    <a href="chunking/index.html" class="tool">
+      <h3>Chunking</h3>
+      <p>Breaks long paragraphs into digestible chunks.</p>
+    </a>
+    <a href="tts/index.html" class="tool">
+      <h3>Text-to-Speech</h3>
+      <p>Reads your text aloud using system voices.</p>
+    </a>
+    <a href="highlight/index.html" class="tool">
+      <h3>Line Highlighting</h3>
+      <p>Focuses your attention line by line.</p>
+    </a>
+    <a href="reader/index.html" class="tool">
+      <h3>Reader View</h3>
+      <p>Cleans messy HTML into readable content.</p>
+    </a>
+    <a href="overlay/index.html" class="tool">
+      <h3>Colored Overlays</h3>
+      <p>Applies filters to reduce eye strain and dyslexia symptoms.</p>
+    </a>
+    <div class="tool about">
+      <h3>About</h3>
+      <p>
+        Created by <a href="https://github.com/arinouri" target="_blank">Arian Nouri</a><br />
+        Free & open-source assistive tools for neurodiverse readers 🧠<br /><br />
+        <a href="tos.html">Terms</a> | <a href="privacy.html">Privacy</a><br />
+        &copy; 2025 Read Easier
+      </p>
+    </div>
+
+	<div class="tool Donate">
+		<h3>Donate </h3>
+		<p>
+			If you find Read Easier helpful, consider making a small donation 🙏<br><br>
+			<form action="https://www.paypal.com/ncp/payment/WR7SHAP7JP2JJ
+			" method="post" target="_blank">
+			  <input type="hidden" name="business" value="arinouri.ca@gmail.com">
+			  <input type="hidden" name="no_recurring" value="0">
+			  <input type="hidden" name="currency_code" value="CAD">
+			  <input type="submit" value="Donate with PayPal" style="padding:10px 20px; background:#0070ba; color:#fff; border:none; border-radius:6px; cursor:pointer;">
+			</form>
+		</p>
+	  </div>
+
+  </main>
+
+  
+  <footer>
+    Made with ❤️ for accessibility and focus<br />
+    <small>&copy; 2025 Read Easier Project</small>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Reader View | Read Easier</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/reader.css" />
+</head>
+<body class="dark">
+
+  <h1>Reader View</h1>
+  <p>Paste messy HTML or text below. Simplify and read in a distraction-free format.</p>
+
+  <div class="controls">
+    <button onclick="toggleTheme()">Toggle Light/Dark</button>
+  </div>
+
+  <textarea id="readerInput" placeholder="Paste raw HTML or plain text here..."></textarea>
+
+  <div class="controls">
+    <button onclick="simplifyText()">🧹 Simplify</button>
+    <label>Font Size:
+      <input type="range" min="14" max="28" value="18" id="fontSizeSlider" oninput="adjustFontSize(this.value)">
+    </label>
+    <label>Line Height:
+      <input type="range" min="1.2" max="2.5" step="0.1" value="1.6" id="lineHeightSlider" oninput="adjustLineHeight(this.value)">
+    </label>
+  </div>
+
+  <div class="reader-box" id="readerBox">Cleaned content will appear here.</div>
+
+  <a href="../index.html">← Back to Read Easier Home</a>
+
+  <footer>
+    &copy; 2025 Read Easier | Clean up the clutter ✨
+  </footer>
+
+  <script src="js/reader.js"></script>
+</body>
+</html>

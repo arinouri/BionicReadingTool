@@ -1,0 +1,143 @@
+:root {
+  --bg-dark: #121212;
+  --text-dark: #ffffff;
+  --input-dark: #1e1e1e;
+
+  --bg-light: #ffffff;
+  --text-light: #121212;
+  --input-light: #f0f0f0;
+
+  --button-dark: #333;
+  --button-light: #ddd;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.dark {
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+body.light {
+  background-color: var(--bg-light);
+  color: var(--text-light);
+}
+
+h1 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+p {
+  text-align: center;
+  max-width: 700px;
+  margin-bottom: 20px;
+  font-size: 1.05rem;
+}
+
+textarea {
+  width: 100%;
+  max-width: 700px;
+  height: 120px;
+  padding: 15px;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #333;
+  resize: vertical;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.dark textarea {
+  background-color: var(--input-dark);
+  color: var(--text-dark);
+}
+
+body.light textarea {
+  background-color: var(--input-light);
+  color: var(--text-light);
+}
+
+.controls {
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.controls button,
+.controls input {
+  padding: 10px 15px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+body.dark .controls button,
+body.dark .controls input {
+  background-color: var(--button-dark);
+  color: var(--text-dark);
+}
+
+body.light .controls button,
+body.light .controls input {
+  background-color: var(--button-light);
+  color: var(--text-light);
+}
+
+.reader-box {
+  max-width: 800px;
+  background-color: var(--input-dark);
+  padding: 25px;
+  font-size: 18px;
+  line-height: 1.6;
+  border-radius: 10px;
+  white-space: pre-wrap;
+  margin-top: 20px;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.light .reader-box {
+  background-color: var(--input-light);
+  color: var(--text-light);
+}
+
+a {
+  color: #aaa;
+  text-decoration: underline;
+  margin-top: 30px;
+}
+
+footer {
+  margin-top: 60px;
+  font-size: 0.9rem;
+  text-align: center;
+  color: #888;
+}
+
+/* Immersive mode */
+body.immersive .controls,
+body.immersive textarea,
+body.immersive footer,
+body.immersive a,
+body.immersive h1,
+body.immersive p {
+  display: none;
+}
+
+body.immersive .reader-box {
+  max-width: 90%;
+  font-size: 1.4rem;
+  padding: 40px;
+}

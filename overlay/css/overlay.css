@@ -1,0 +1,136 @@
+:root {
+  --bg-dark: #121212;
+  --text-dark: #ffffff;
+  --input-dark: #1e1e1e;
+
+  --bg-light: #ffffff;
+  --text-light: #121212;
+  --input-light: #f0f0f0;
+
+  --button-dark: #333;
+  --button-light: #ddd;
+
+  --label-dark: #ccc;
+  --label-light: #333;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.dark {
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+body.light {
+  background-color: var(--bg-light);
+  color: var(--text-light);
+}
+
+h1 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+p {
+  text-align: center;
+  max-width: 700px;
+  margin-bottom: 20px;
+  font-size: 1.05rem;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.controls input,
+.controls button {
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+body.dark .controls input,
+body.dark .controls button {
+  background: var(--button-dark);
+  color: var(--text-dark);
+}
+
+body.light .controls input,
+body.light .controls button {
+  background: var(--button-light);
+  color: var(--text-light);
+}
+
+textarea {
+  width: 100%;
+  max-width: 700px;
+  height: 180px;
+  padding: 15px;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  border: 1px solid #333;
+  resize: vertical;
+  position: relative;
+  z-index: 1;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.dark textarea {
+  background: var(--input-dark);
+  color: var(--text-dark);
+}
+
+body.light textarea {
+  background: var(--input-light);
+  color: var(--text-light);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+a {
+  color: #aaa;
+  margin-top: 30px;
+  text-decoration: underline;
+}
+
+label {
+  font-size: 0.9rem;
+}
+
+body.dark label {
+  color: var(--label-dark);
+}
+
+body.light label {
+  color: var(--label-light);
+}
+
+footer {
+  margin-top: 60px;
+  font-size: 0.9rem;
+  text-align: center;
+  color: #888;
+}
