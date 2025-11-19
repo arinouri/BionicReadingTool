@@ -1,112 +1,203 @@
 :root {
-  --bg-dark: #121212;
-  --text-dark: #ffffff;
-  --input-dark: #1e1e1e;
+  --bg-dark: #050608;
+  --bg-light: #f4f4f7;
 
-  --bg-light: #ffffff;
-  --text-light: #121212;
-  --input-light: #f0f0f0;
+  --text-dark: #f9fafb;
+  --text-light: #111827;
 
-  --button-dark: #333;
-  --button-light: #ddd;
+  --card-dark: #111827;
+  --card-light: #ffffff;
+
+  --border-dark: #1f2937;
+  --border-light: #d1d5db;
+
+  --accent: #6ec1e4;
+}
+
+/* GLOBAL LAYOUT */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
-  font-family: 'Segoe UI', sans-serif;
-  padding: 40px 20px;
+  margin: 0;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: background 0.3s, color 0.3s;
+  padding: 32px 16px 40px;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 body.dark {
-  background-color: var(--bg-dark);
+  background: radial-gradient(circle at top, #111827 0, #020617 60%);
   color: var(--text-dark);
 }
 
 body.light {
-  background-color: var(--bg-light);
+  background: radial-gradient(circle at top, #ffffff 0, #e5e7eb 60%);
   color: var(--text-light);
 }
 
+/* WIDTH */
+
+h1,
+p,
+.controls,
+textarea,
+a,
+footer {
+  width: min(900px, 100%);
+}
+
+/* HEADER & DESCRIPTION */
+
 h1 {
-  font-size: 2.2rem;
-  margin-bottom: 10px;
+  margin: 0 0 8px;
+  font-size: 2rem;
+  letter-spacing: 0.02em;
   text-align: center;
 }
 
 p {
+  margin: 0 0 18px;
+  font-size: 0.95rem;
+  opacity: 0.9;
   text-align: center;
-  max-width: 700px;
-  margin-bottom: 20px;
-  font-size: 1.05rem;
+}
+
+/* MAIN CARD FEEL */
+
+textarea,
+.controls {
+  max-width: 900px;
 }
 
 textarea {
   width: 100%;
-  max-width: 700px;
-  height: 120px;
-  padding: 15px;
-  font-size: 1.1rem;
-  border-radius: 8px;
-  border: 1px solid #333;
+  min-height: 140px;
+  border-radius: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.75);
+  padding: 14px 12px;
   resize: vertical;
-  transition: background 0.3s, color 0.3s;
-}
-
-body.dark textarea {
-  background: var(--input-dark);
+  font-size: 1rem;
+  font-family: inherit;
+  background: rgba(15, 23, 42, 0.85);
   color: var(--text-dark);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
 body.light textarea {
-  background: var(--input-light);
+  background: #ffffff;
   color: var(--text-light);
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.12);
 }
+
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px rgba(110, 193, 228, 0.6);
+}
+
+/* CONTROLS */
 
 .controls {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 12px;
   justify-content: center;
-  margin-bottom: 25px;
+  margin-top: 14px;
 }
 
 .controls select,
-.controls input,
-.controls button {
-  padding: 10px 15px;
-  font-size: 1rem;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-body.dark .controls select,
-body.dark .controls input,
-body.dark .controls button {
-  background: var(--button-dark);
-  color: var(--text-dark);
+.controls input {
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.75);
+  background: rgba(15, 23, 42, 0.95);
+  color: inherit;
+  font-size: 0.9rem;
+  min-width: 140px;
 }
 
 body.light .controls select,
-body.light .controls input,
-body.light .controls button {
-  background: var(--button-light);
-  color: var(--text-light);
+body.light .controls input {
+  background: #ffffff;
 }
 
+.controls button {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.75);
+  background: rgba(15, 23, 42, 0.95);
+  color: inherit;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: transform 0.1s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+body.light .controls button {
+  background: #ffffff;
+}
+
+.controls button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.5);
+}
+
+/* LINK & FOOTER */
+
 a {
-  color: #aaa;
-  margin-top: 30px;
+  margin-top: 22px;
+  font-size: 0.9rem;
+  color: var(--accent);
+  text-decoration: none;
+  text-align: center;
+}
+
+a:hover {
   text-decoration: underline;
 }
 
 footer {
-  margin-top: 60px;
-  font-size: 0.9rem;
+  margin-top: 26px;
+  font-size: 0.85rem;
   text-align: center;
-  color: #888;
+  opacity: 0.75;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 640px) {
+  body {
+    padding-top: 24px;
+  }
+
+  h1 {
+    font-size: 1.7rem;
+  }
+
+  textarea {
+    min-height: 130px;
+  }
+
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .controls button,
+  .controls select,
+  .controls input {
+    width: 100%;
+  }
 }
