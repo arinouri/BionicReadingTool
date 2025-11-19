@@ -2,32 +2,40 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Spritz Reader | Read Easier</title>
+  <title>Line Highlighting | Read Easier</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/highlight.css">
 </head>
 <body class="dark">
 
-  <h1>Spritz Reader</h1>
-  <p>Paste some text below and press play to start speed reading one word at a time.</p>
+  <header class="tool-header">
+    <a href="../index.html" class="brand-link">← Read Easier</a>
+    <button id="modeToggle" type="button" onclick="toggleTheme()" aria-label="Toggle light and dark">🌙</button>
+  </header>
 
-  <textarea id="spritzInput" placeholder="Paste your paragraph here..."></textarea>
+  <main>
+    <h1>Line Highlighting</h1>
+    <p>Paste or type your text. Load lines, then move the highlight up or down to stay focused.</p>
 
-  <div class="controls">
-    <button onclick="toggleTheme()">🌓 Toggle Light/Dark</button>
-    <button onclick="startSpritz()">▶️ Play</button>
-    <button onclick="pauseSpritz()">⏸️ Pause</button>
-    <label>Speed (wpm): <input id="speedControl" type="number" value="150"></label>
-  </div>
+    <textarea id="highlightInput" placeholder="Paste text here, with each sentence or line on a new line..."></textarea>
 
-  <div class="spritz-box" id="spritzBox">Click play to start</div>
+    <div class="controls">
+      <button onclick="loadLines()">Load lines</button>
+      <button onclick="prevLine()">⬆ Previous line</button>
+      <button onclick="nextLine()">⬇ Next line</button>
+    </div>
 
-  <a href="../index.html">← Back to Read Easier Home</a>
+    <div class="highlight-box" id="highlightBox">
+      Paste your text and click "Load lines" to begin.
+    </div>
 
-  <footer>
-    &copy; 2025 Read Easier | Speed read your thoughts ⚡
-  </footer>
+    <a href="../index.html">← Back to Read Easier Home</a>
 
-  <script src="./js/spritz.js"></script>
+    <footer>
+      &copy; 2025 Read Easier | Keep your place 🟩
+    </footer>
+  </main>
+
+  <script src="./js/highlight.js"></script>
 </body>
 </html>

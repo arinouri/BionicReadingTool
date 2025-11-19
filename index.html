@@ -3,77 +3,136 @@
 <head>
   <meta charset="UTF-8" />
   <title>Read Easier - Assistive Reading Tools</title>
+  <meta name="description" content="Free, browser-based assistive reading tools like Bionic Reading, Spritz, TTS, line highlighting, and overlays — built for focus, accessibility, and neurodiverse readers.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="dark">
+  <button id="modeToggle" type="button" aria-label="Toggle light and dark mode" onclick="toggleMode()">🌙</button>
 
-  <button id="modeToggle" onclick="toggleMode()">🌙</button>
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">Free, private & in-browser</p>
+      <h1>Read Easier</h1>
+      <p class="tagline">
+        Assistive reading tools for neurodiverse readers, students, and anyone who wants calmer pages.
+      </p>
+      <p class="description">
+        Mix and match tools like <span id="typedText"></span> to make any text easier to scan, hear, and focus on.
+      </p>
 
-  <header>
-    <h1>Read Easier</h1>
-    <p id="dynamicText" class="description">with <span id="typedText"></span></p>
-    <p class="tagline">Assistive Reading Tools to Boost Focus and Accessibility</p>
+      <div class="hero-cta">
+        <a href="#tools" class="btn primary-btn">Browse all tools</a>
+        <a href="bionic/index.html" class="btn ghost-btn">Start with Bionic Reading</a>
+      </div>
+
+      <div class="hero-badges">
+        <span class="badge">No login</span>
+        <span class="badge">No tracking</span>
+        <span class="badge">100% free</span>
+      </div>
+    </div>
   </header>
 
-  <main class="grid">
-    <a href="bionic/index.html" class="tool">
-      <h3>Bionic Reading</h3>
-      <p>Boldens parts of words to guide your eyes and improve speed.</p>
-    </a>
-    <a href="spritz/index.html" class="tool">
-      <h3>Spritz Reader</h3>
-      <p>Displays one word at a time for focused reading.</p>
-    </a>
-    <a href="chunking/index.html" class="tool">
-      <h3>Chunking</h3>
-      <p>Breaks long paragraphs into digestible chunks.</p>
-    </a>
-    <a href="tts/index.html" class="tool">
-      <h3>Text-to-Speech</h3>
-      <p>Reads your text aloud using system voices.</p>
-    </a>
-    <a href="highlight/index.html" class="tool">
-      <h3>Line Highlighting</h3>
-      <p>Focuses your attention line by line.</p>
-    </a>
-    <a href="reader/index.html" class="tool">
-      <h3>Reader View</h3>
-      <p>Cleans messy HTML into readable content.</p>
-    </a>
-    <a href="overlay/index.html" class="tool">
-      <h3>Colored Overlays</h3>
-      <p>Applies filters to reduce eye strain and dyslexia symptoms.</p>
-    </a>
-    <div class="tool about">
-      <h3>About</h3>
-      <p>
-        Created by <a href="https://github.com/arinouri" target="_blank">Arian Nouri</a><br />
-        Free & open-source assistive tools for neurodiverse readers 🧠<br /><br />
-        <a href="tos.html">Terms</a> | <a href="privacy.html">Privacy</a><br />
-        &copy; 2025 Read Easier
-      </p>
-    </div>
+  <main id="tools" class="layout">
+    <section class="grid" aria-label="Assistive reading tools">
+      <a href="bionic/index.html" class="tool">
+        <div class="tool-header">
+          <h3>Bionic Reading</h3>
+          <span class="tool-tag">Visual focus</span>
+        </div>
+        <p>Boldens the first part of words to guide your eyes and gently boost reading speed.</p>
+      </a>
 
-	<div class="tool Donate">
-		<h3>Donate </h3>
-		<p>
-			If you find Read Easier helpful, consider making a small donation 🙏<br><br>
-			<form action="https://www.paypal.com/ncp/payment/WR7SHAP7JP2JJ
-			" method="post" target="_blank">
-			  <input type="hidden" name="business" value="arinouri.ca@gmail.com">
-			  <input type="hidden" name="no_recurring" value="0">
-			  <input type="hidden" name="currency_code" value="CAD">
-			  <input type="submit" value="Donate with PayPal" style="padding:10px 20px; background:#0070ba; color:#fff; border:none; border-radius:6px; cursor:pointer;">
-			</form>
-		</p>
-	  </div>
+      <a href="spritz/index.html" class="tool">
+        <div class="tool-header">
+          <h3>Spritz Reader</h3>
+          <span class="tool-tag">Paced</span>
+        </div>
+        <p>Shows one word at a time so you can focus without scrolling or losing your place.</p>
+      </a>
 
+      <a href="chunking/index.html" class="tool">
+        <div class="tool-header">
+          <h3>Chunking</h3>
+          <span class="tool-tag">Structure</span>
+        </div>
+        <p>Breaks long paragraphs into short, readable blocks that are easier on the brain.</p>
+      </a>
+
+      <a href="tts/index.html" class="tool">
+        <div class="tool-header">
+          <h3>Text-to-Speech</h3>
+          <span class="tool-tag">Audio</span>
+        </div>
+        <p>Reads your text aloud with system voices — great for listening while following along.</p>
+      </a>
+
+      <a href="highlight/index.html" class="tool">
+        <div class="tool-header">
+          <h3>Line Highlighting</h3>
+          <span class="tool-tag">Focus</span>
+        </div>
+        <p>Moves a highlight bar line by line to help you keep your place and reduce distractions.</p>
+      </a>
+
+      <a href="reader/index.html" class="tool">
+        <div class="tool-header">
+          <h3>Reader View</h3>
+          <span class="tool-tag">Clean-up</span>
+        </div>
+        <p>Strips away cluttered HTML, ads, and extra styling to leave clean, readable text.</p>
+      </a>
+
+      <a href="overlay/index.html" class="tool">
+        <div class="tool-header">
+          <h3>Colored Overlays</h3>
+          <span class="tool-tag">Comfort</span>
+        </div>
+        <p>Applies color filters that can reduce visual stress and help with dyslexia symptoms.</p>
+      </a>
+
+      <article class="tool about" aria-label="About Read Easier">
+        <h3>About Read Easier</h3>
+        <p>
+          Read Easier is a collection of small, free tools built for neurodiverse readers,
+          students with ADHD, dyslexia, or anyone who wants text to feel less overwhelming.
+        </p>
+        <p>
+          • 100% client-side (no data collection)<br>
+          • Works in any modern browser<br>
+          • Open-source on <a href="https://github.com/arinouri" target="_blank" rel="noopener">GitHub</a>
+        </p>
+        <p class="about-meta">
+          Created by <a href="https://github.com/arinouri" target="_blank" rel="noopener">Arian Nouri</a><br />
+          <a href="tos.html">Terms</a> · <a href="privacy.html">Privacy</a><br />
+          &copy; 2025 Read Easier
+        </p>
+      </article>
+
+      <article class="tool donate" aria-label="Support Read Easier">
+        <h3>Support the project</h3>
+        <p>
+          If Read Easier helps you or your students, you can keep it online and growing
+          by buying me a coffee 💛
+        </p>
+        <form action="https://www.paypal.com/ncp/payment/WR7SHAP7JP2JJ" method="post" target="_blank">
+          <input type="hidden" name="business" value="arinouri.ca@gmail.com">
+          <input type="hidden" name="no_recurring" value="0">
+          <input type="hidden" name="currency_code" value="CAD">
+          <button type="submit" class="btn donate-btn">
+            Donate with PayPal
+          </button>
+        </form>
+        <p class="donate-small">
+          Even small amounts help cover hosting and give me time to build more tools.
+        </p>
+      </article>
+    </section>
   </main>
 
-  
   <footer>
-    Made with ❤️ for accessibility and focus<br />
+    <p>Made with ❤️ for accessibility, focus, and neurodiverse brains.</p>
     <small>&copy; 2025 Read Easier Project</small>
   </footer>
 

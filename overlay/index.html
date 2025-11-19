@@ -8,35 +8,38 @@
 </head>
 <body class="dark">
 
-  <h1>Colored Overlays</h1>
-  <p>Use color overlays to make reading easier on your eyes. Great for dyslexia and light sensitivity.</p>
+  <header class="tool-header">
+    <a href="../index.html" class="brand-link">← Read Easier</a>
+    <button id="modeToggle" type="button" onclick="toggleTheme()" aria-label="Toggle light and dark">🌙</button>
+  </header>
 
-  <div class="controls">
-    <button onclick="toggleTheme()">Toggle Light/Dark</button>
-  </div>
+  <main>
+    <h1>Colored Overlays</h1>
+    <p>Use color overlays to make reading easier on your eyes. Great for dyslexia and light sensitivity.</p>
 
-  <div class="controls">
-    <label>
-      Overlay Color:
-      <input type="color" id="overlayColor" value="#00ffcc" onchange="updateOverlay()" />
-    </label>
-    <label>
-      Opacity:
-      <input type="range" id="overlayOpacity" min="0" max="1" step="0.01" value="0.2" onchange="updateOverlay()" />
-    </label>
-  </div>
+    <div class="controls">
+      <label>
+        Overlay Color:
+        <input type="color" id="overlayColor" value="#00ffcc" onchange="updateOverlay()" />
+      </label>
+      <label>
+        Opacity:
+        <input type="range" id="overlayOpacity" min="0" max="1" step="0.01" value="0.2" onchange="updateOverlay()" />
+      </label>
+    </div>
 
-  <textarea placeholder="Try reading with the overlay...">
+    <textarea placeholder="Try reading with the overlay...">
 This is some sample text. You can type your own or paste anything you'd like to read more comfortably using a colored overlay.
-  </textarea>
+    </textarea>
 
-  <div class="overlay" id="overlay"></div>
+    <div class="overlay" id="overlay"></div>
 
-  <a href="../index.html">← Back to Read Easier Home</a>
+    <a href="../index.html">← Back to Read Easier Home</a>
 
-  <footer>
-    &copy; 2025 Read Easier | Overlay your focus 🌈
-  </footer>
+    <footer>
+      &copy; 2025 Read Easier | Overlay your focus 🌈
+    </footer>
+  </main>
 
   <script src="js/overlay.js"></script>
 </body>

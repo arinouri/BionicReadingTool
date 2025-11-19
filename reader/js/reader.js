@@ -1,30 +1,61 @@
-function simplifyText() {
-  const rawInput = document.getElementById("readerInput").value;
-  const readerBox = document.getElementById("readerBox");
+// ------- THEME -------
 
-  const tempDiv = document.createElement("div");
-  tempDiv.innerHTML = rawInput;
+function applyTheme(theme) {
+  const body = document.body;
+  const toggle = document.getElementById("modeToggle");
 
-  tempDiv.querySelectorAll("script, style, iframe, nav, footer, header, button").forEach(el => el.remove());
+  body.classList.remove("dark", "light");
+  body.classList.add(theme);
 
-  const cleanText = tempDiv.textContent || tempDiv.innerText || "";
-  readerBox.textContent = cleanText.trim();
+  if (toggle) {
+    toggle.textContent = theme === "dark" ? "🌙" : "☀️";
+  }
+}
+
+function initTheme() {
+  const stored = localStorage.getItem("readeasier-theme");
+  const prefersDark =
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+  const theme = stored || (prefersDark ? "dark" : "light");
+  applyTheme(theme);
 }
 
 function toggleTheme() {
-  const body = document.body;
-  body.classList.toggle("dark");
-  body.classList.toggle("light");
+  const isDark = document.body.classList.contains("dark");
+  const next = isDark ? "light" : "dark";
+  applyTheme(next);
+  localStorage.setItem("readeasier-theme", next);
 }
 
-function adjustFontSize(size) {
-  document.getElementById("readerBox").style.fontSize = `${size}px`;
+initTheme();
+
+// ------- Reader logic -------
+
+function simplifyText() {
+  const input = document.getElementById("readerInput").value;
+  const output = document.getElementById("readerBox");
+  const parser = new DOMParser();
+  let cleaned = input;
+
+  try {
+    const doc = parser.parseFromString(input, "text/html");
+    cleaned = doc.body.textContent || input;
+  } catch (e) {
+    cleaned = input;
+  }
+
+  cleaned = cleaned.replace(/\s+/g, " ").trim();
+  output.textContent = cleaned || "Nothing to show yet. Paste some text above and click Simplify.";
 }
 
-function adjustLineHeight(height) {
-  document.getElementById("readerBox").style.lineHeight = height;
+function adjustFontSize(value) {
+  const box = document.getElementById("readerBox");
+  box.style.fontSize = value + "px";
 }
 
-function toggleImmersive() {
-  document.body.classList.toggle("immersive");
+function adjustLineHeight(value) {
+  const box = document.getElementById("readerBox");
+  box.style.lineHeight = value;
 }

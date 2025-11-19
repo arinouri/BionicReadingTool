@@ -8,28 +8,33 @@
 </head>
 <body class="dark">
 
-  <h1>Spritz Reader</h1>
-  <p>Paste some text below and press play to start speed reading one word at a time.</p>
-  <div class="controls">
-    <button onclick="toggleTheme()">Toggle Light/Dark</button>
-  </div>
+  <header class="tool-header">
+    <a href="../index.html" class="brand-link">← Read Easier</a>
+    <button id="modeToggle" type="button" onclick="toggleTheme()" aria-label="Toggle light and dark">🌙</button>
+  </header>
 
+  <main>
+    <h1>Spritz Reader</h1>
+    <p>Paste some text below and press play to start speed reading one word at a time.</p>
 
-  <textarea id="spritzInput" placeholder="Paste your paragraph here..."></textarea>
+    <textarea id="spritzInput" placeholder="Paste your paragraph here..."></textarea>
 
-  <div class="controls">
-    <button onclick="startSpritz()">▶️ Play</button>
-    <button onclick="pauseSpritz()">⏸️ Pause</button>
-    <label>Speed (wpm): <input id="speedControl" type="number" value="150"></label>
-  </div>
+    <div class="controls">
+      <button onclick="startSpritz()">▶️ Play</button>
+      <button onclick="pauseSpritz()">⏸️ Pause</button>
+      <label>Speed (wpm):
+        <input id="speedControl" type="number" value="150">
+      </label>
+    </div>
 
-  <div class="spritz-box" id="spritzBox">Click play to start</div>
+    <div class="spritz-box" id="spritzBox">Click play to start</div>
 
-  <a href="../index.html">← Back to Read Easier Home</a>
+    <a href="../index.html">← Back to Read Easier Home</a>
 
-  <footer>
-    &copy; 2025 Read Easier | Speed read your thoughts ⚡
-  </footer>
+    <footer>
+      &copy; 2025 Read Easier | Speed read your thoughts ⚡
+    </footer>
+  </main>
 
   <script src="./js/spritz.js"></script>
 </body>

@@ -8,31 +8,34 @@
 </head>
 <body class="dark">
 
-  <h1>Text-to-Speech</h1>
-  <p>Paste your text and press “Speak” to hear it read aloud.</p>
+  <header class="tool-header">
+    <a href="../index.html" class="brand-link">← Read Easier</a>
+    <button id="modeToggle" type="button" onclick="toggleTheme()" aria-label="Toggle light and dark">🌙</button>
+  </header>
 
-  <div class="controls">
-    <button onclick="toggleTheme()">Toggle Light/Dark</button>
-  </div>
+  <main>
+    <h1>Text-to-Speech</h1>
+    <p>Paste your text and press “Speak” to hear it read aloud.</p>
 
-  <textarea id="ttsInput" placeholder="Enter text to read aloud..."></textarea>
+    <textarea id="ttsInput" placeholder="Enter text to read aloud..."></textarea>
 
-  <div class="controls">
-    <select id="voiceSelect"></select>
-    <label>Speed:
-      <input type="number" id="rate" value="1" step="0.1" min="0.5" max="2">
-    </label>
-    <button onclick="speakText()">🔊 Speak</button>
-    <button onclick="pauseSpeech()">⏸ Pause</button>
-    <button onclick="resumeSpeech()">▶️ Resume</button>
-    <button onclick="stopSpeech()">🛑 Stop</button>
-  </div>
+    <div class="controls">
+      <select id="voiceSelect"></select>
+      <label>Speed:
+        <input type="number" id="rate" value="1" step="0.1" min="0.5" max="2">
+      </label>
+      <button onclick="speakText()">🔊 Speak</button>
+      <button onclick="pauseSpeech()">⏸ Pause</button>
+      <button onclick="resumeSpeech()">▶️ Resume</button>
+      <button onclick="stopSpeech()">🛑 Stop</button>
+    </div>
 
-  <a href="../index.html">← Back to Read Easier Home</a>
+    <a href="../index.html">← Back to Read Easier Home</a>
 
-  <footer>
-    &copy; 2025 Read Easier | Let your words speak 🗣️
-  </footer>
+    <footer>
+      &copy; 2025 Read Easier | Let your words speak 🗣️
+    </footer>
+  </main>
 
   <script src="js/tts.js"></script>
 </body>

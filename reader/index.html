@@ -8,32 +8,35 @@
 </head>
 <body class="dark">
 
-  <h1>Reader View</h1>
-  <p>Paste messy HTML or text below. Simplify and read in a distraction-free format.</p>
+  <header class="tool-header">
+    <a href="../index.html" class="brand-link">← Read Easier</a>
+    <button id="modeToggle" type="button" onclick="toggleTheme()" aria-label="Toggle light and dark">🌙</button>
+  </header>
 
-  <div class="controls">
-    <button onclick="toggleTheme()">Toggle Light/Dark</button>
-  </div>
+  <main>
+    <h1>Reader View</h1>
+    <p>Paste messy HTML or text below. Simplify and read in a distraction-free format.</p>
 
-  <textarea id="readerInput" placeholder="Paste raw HTML or plain text here..."></textarea>
+    <textarea id="readerInput" placeholder="Paste raw HTML or plain text here..."></textarea>
 
-  <div class="controls">
-    <button onclick="simplifyText()">🧹 Simplify</button>
-    <label>Font Size:
-      <input type="range" min="14" max="28" value="18" id="fontSizeSlider" oninput="adjustFontSize(this.value)">
-    </label>
-    <label>Line Height:
-      <input type="range" min="1.2" max="2.5" step="0.1" value="1.6" id="lineHeightSlider" oninput="adjustLineHeight(this.value)">
-    </label>
-  </div>
+    <div class="controls">
+      <button onclick="simplifyText()">🧹 Simplify</button>
+      <label>Font Size:
+        <input type="range" min="14" max="28" value="18" id="fontSizeSlider" oninput="adjustFontSize(this.value)">
+      </label>
+      <label>Line Height:
+        <input type="range" min="1.2" max="2.5" step="0.1" value="1.6" id="lineHeightSlider" oninput="adjustLineHeight(this.value)">
+      </label>
+    </div>
 
-  <div class="reader-box" id="readerBox">Cleaned content will appear here.</div>
+    <div class="reader-box" id="readerBox">Cleaned content will appear here.</div>
 
-  <a href="../index.html">← Back to Read Easier Home</a>
+    <a href="../index.html">← Back to Read Easier Home</a>
 
-  <footer>
-    &copy; 2025 Read Easier | Clean up the clutter ✨
-  </footer>
+    <footer>
+      &copy; 2025 Read Easier | Clean up the clutter ✨
+    </footer>
+  </main>
 
   <script src="js/reader.js"></script>
 </body>

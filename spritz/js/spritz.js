@@ -1,7 +1,42 @@
+// ------- THEME -------
+
+function applyTheme(theme) {
+  const body = document.body;
+  const toggle = document.getElementById("modeToggle");
+
+  body.classList.remove("dark", "light");
+  body.classList.add(theme);
+
+  if (toggle) {
+    toggle.textContent = theme === "dark" ? "🌙" : "☀️";
+  }
+}
+
+function initTheme() {
+  const stored = localStorage.getItem("readeasier-theme");
+  const prefersDark =
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+  const theme = stored || (prefersDark ? "dark" : "light");
+  applyTheme(theme);
+}
+
+function toggleTheme() {
+  const isDark = document.body.classList.contains("dark");
+  const next = isDark ? "light" : "dark";
+  applyTheme(next);
+  localStorage.setItem("readeasier-theme", next);
+}
+
+initTheme();
+
+// ------- Spritz logic -------
+
 let words = [];
 let index = 0;
 let interval = null;
-let baseDelay = 100; // Default for 150 WPM
+let baseDelay = 100;
 
 function startSpritz() {
   const input = document.getElementById("spritzInput").value;
@@ -12,13 +47,12 @@ function startSpritz() {
   baseDelay = 60000 / wpm;
 
   if (interval) clearInterval(interval);
-  interval = setInterval(() => showNextWord(), baseDelay);
+  index = 0;
+  interval = setInterval(showNextWord, baseDelay);
 }
 
 function showNextWord() {
   const box = document.getElementById("spritzBox");
-  const inputEl = document.getElementById("spritzInput");
-
   if (index >= words.length) {
     box.textContent = "Done!";
     clearInterval(interval);
@@ -27,51 +61,16 @@ function showNextWord() {
 
   const currentWord = words[index];
   box.textContent = currentWord;
-
-  // Highlight current word in textarea
-  const inputText = inputEl.value;
-  const wordStartIndex = findWordStart(inputText, index);
-  const wordEndIndex = wordStartIndex + currentWord.length;
-  inputEl.setSelectionRange(wordStartIndex, wordEndIndex);
-
   index++;
 
-  // Pause if word ends with period
   if (currentWord.endsWith(".")) {
     clearInterval(interval);
     setTimeout(() => {
-      interval = setInterval(() => showNextWord(), baseDelay);
+      interval = setInterval(showNextWord, baseDelay);
     }, 800);
   }
 }
 
-function findWordStart(text, wordIndex) {
-  let count = 0;
-  let idx = 0;
-  while (count < wordIndex && idx < text.length) {
-    if (/\s/.test(text[idx])) {
-      while (idx < text.length && /\s/.test(text[idx])) idx++;
-      count++;
-    } else {
-      idx++;
-    }
-  }
-  return idx;
-}
-
 function pauseSpritz() {
   clearInterval(interval);
-}
-
-document.getElementById("spritzInput").addEventListener("click", (e) => {
-  const pos = e.target.selectionStart;
-  const textBefore = e.target.value.slice(0, pos);
-  index = textBefore.trim().split(/\s+/).length - 1;
-  showNextWord(); // Show the selected word immediately
-});
-
-function toggleTheme() {
-  const body = document.body;
-  body.classList.toggle("dark");
-  body.classList.toggle("light");
 }
