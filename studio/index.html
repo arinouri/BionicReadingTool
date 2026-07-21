@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f2ec">
+  <meta name="description" content="ReadEasier workspace: free tools for focused reading, clearer writing, study notes, and webpage citations.">
+  <title>Workspace — ReadEasier</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#sourceText">Skip to text editor</a>
+  <header class="app-header">
+    <a class="brand" href="../index.html" aria-label="ReadEasier home"><span>R</span><b>ReadEasier</b></a>
+    <div class="document-status" id="saveStatus" aria-live="polite"><i></i> Saved locally</div>
+    <div class="header-actions"><button id="themeToggle" type="button">Dark</button><a href="../index.html#tools">All tools</a></div>
+  </header>
+
+  <div class="app-layout">
+    <aside class="tool-sidebar" aria-label="Workspace tools">
+      <div class="sidebar-heading"><span>Workspace</span><button id="sidebarToggle" type="button" aria-label="Toggle tool menu" aria-expanded="false">Tools</button></div>
+      <nav id="toolNav">
+        <p>Read</p>
+        <button class="active" type="button" data-tool="focus"><i>Aa</i><span>Focus & listen</span></button>
+        <button type="button" data-tool="bionic"><i>Ab</i><span>Word anchors</span></button>
+        <button type="button" data-tool="chunk"><i>¶</i><span>Chunk reader</span></button>
+        <button type="button" data-tool="pace"><i>1×</i><span>Paced reader</span></button>
+        <p>Write</p>
+        <button type="button" data-tool="clarity"><i>✓</i><span>Clarity check</span></button>
+        <button type="button" data-tool="cleanup"><i>⌫</i><span>Text cleanup</span></button>
+        <button type="button" data-tool="compare"><i>±</i><span>Compare drafts</span></button>
+        <p>Study</p>
+        <button type="button" data-tool="study"><i>◎</i><span>Study pack</span></button>
+        <button type="button" data-tool="citation"><i>“</i><span>Web citation</span></button>
+      </nav>
+      <div class="sidebar-note"><span>Private by default</span><p>Your text is processed in this browser.</p><a href="../privacy.html">Details ↗</a></div>
+    </aside>
+
+    <main class="workspace">
+      <div class="workspace-heading">
+        <div><p id="toolCategory">Reading tool</p><h1 id="toolTitle">Focus & listen</h1></div>
+        <p id="toolDescription">Change how the page looks, keep your place, and listen sentence by sentence.</p>
+      </div>
+
+      <section class="source-card" id="sourceCard" aria-labelledby="sourceLabel">
+        <div class="source-toolbar">
+          <label id="sourceLabel" for="sourceText">Your text</label>
+          <div><button id="sampleButton" type="button">Sample</button><label class="file-button" for="fileInput">Import .txt</label><input id="fileInput" type="file" accept=".txt,.md,text/plain,text/markdown" hidden><button id="copySourceButton" type="button">Copy</button><button id="downloadButton" type="button">Export</button><button id="clearButton" type="button">Clear</button></div>
+        </div>
+        <textarea id="sourceText" spellcheck="true" placeholder="Paste or type here…"></textarea>
+        <div class="source-stats"><span><b id="wordCount">0</b> words</span><span><b id="characterCount">0</b> characters</span><span><b id="sentenceCount">0</b> sentences</span><span><b id="readTime">0</b> min read</span><small>Ctrl/⌘ + Enter runs the current tool</small></div>
+      </section>
+
+      <section class="tool-panel active" id="focusPanel" data-panel="focus">
+        <div class="panel-bar">
+          <div class="speech-buttons"><button class="primary-control" id="playSpeech" type="button"><span>▶</span> Read aloud</button><button id="previousSentence" type="button" aria-label="Previous sentence">←</button><button id="nextSentence" type="button" aria-label="Next sentence">→</button></div>
+          <label for="voiceSelect">Voice <select id="voiceSelect"><option value="">Device default</option></select></label>
+          <label for="speechRate">Speed <select id="speechRate"><option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="1.75">1.75×</option></select></label>
+        </div>
+        <div class="focus-layout">
+          <aside class="display-settings">
+            <p>Display</p>
+            <label for="fontSize">Text size <output id="fontSizeOutput">20px</output><input id="fontSize" type="range" min="16" max="34" value="20"></label>
+            <label for="lineHeight">Line spacing <output id="lineHeightOutput">1.7</output><input id="lineHeight" type="range" min="13" max="24" value="17"></label>
+            <label for="lineWidth">Line width <output id="lineWidthOutput">720px</output><input id="lineWidth" type="range" min="480" max="980" step="20" value="720"></label>
+            <p>Page colour</p>
+            <div class="page-themes" role="group" aria-label="Reader page colour"><button class="active" type="button" data-reader-theme="paper" aria-label="Warm paper"></button><button type="button" data-reader-theme="white" aria-label="White"></button><button type="button" data-reader-theme="blue" aria-label="Soft blue"></button><button type="button" data-reader-theme="dark" aria-label="Dark"></button></div>
+            <label class="switch"><span>Reading ruler<small>Follow the pointer</small></span><input id="rulerToggle" type="checkbox"><i></i></label>
+            <label class="switch"><span>Word anchors<small>Bold word starts</small></span><input id="focusAnchors" type="checkbox"><i></i></label>
+          </aside>
+          <article class="reader-page" id="readerPage" data-reader-theme="paper" tabindex="0"><div id="readerContent" class="reader-content"><p class="empty-copy">Add text above to start reading.</p></div><div class="reading-ruler" aria-hidden="true"></div></article>
+        </div>
+      </section>
+
+      <section class="tool-panel" id="bionicPanel" data-panel="bionic" hidden>
+        <div class="simple-controls"><label for="anchorStrength">Bold amount <output id="anchorStrengthOutput">40%</output><input id="anchorStrength" type="range" min="25" max="70" value="40"></label><button id="copyBionic" type="button">Copy formatted text</button></div>
+        <article class="output-paper bionic-output" id="bionicOutput"><p class="empty-copy">Your formatted text will appear here.</p></article>
+        <p class="tool-note">Word anchors are a display preference, not a treatment. Adjust the amount or turn them off if they make reading less comfortable.</p>
+      </section>
+
+      <section class="tool-panel" id="chunkPanel" data-panel="chunk" hidden>
+        <div class="simple-controls"><label for="chunkSize">Words per section <output id="chunkSizeOutput">45</output><input id="chunkSize" type="range" min="15" max="100" step="5" value="45"></label><button id="buildChunks" type="button">Build sections</button></div>
+        <article class="chunk-output output-paper"><div class="chunk-meta"><span id="chunkPosition">Section 0 of 0</span><i><b id="chunkProgress"></b></i></div><p id="chunkText" class="empty-copy">Build sections to read a smaller piece at a time.</p><div class="chunk-nav"><button id="previousChunk" type="button">← Previous</button><button id="nextChunk" type="button">Next →</button></div></article>
+      </section>
+
+      <section class="tool-panel" id="pacePanel" data-panel="pace" hidden>
+        <div class="simple-controls"><label for="paceSpeed">Reading speed <output id="paceSpeedOutput">220 wpm</output><input id="paceSpeed" type="range" min="80" max="700" step="10" value="220"></label><div><button class="primary-control" id="startPace" type="button">▶ Start</button><button id="resetPace" type="button">Reset</button></div></div>
+        <article class="pace-output output-paper"><div class="pace-guide"></div><p id="paceWord">Ready</p><div class="pace-meta"><span id="pacePosition">0 / 0</span><i><b id="paceProgress"></b></i></div></article>
+      </section>
+
+      <section class="tool-panel" id="clarityPanel" data-panel="clarity" hidden>
+        <div class="clarity-grid">
+          <article class="score-card"><span>Clarity signal</span><strong id="clarityScore">—</strong><p id="clarityLabel">Add text to begin.</p></article>
+          <article class="metric-card"><span>Reading level</span><strong id="gradeLevel">—</strong><p>Estimated with Flesch–Kincaid.</p></article>
+          <article class="metric-card goal-card"><label for="wordGoal">Word goal</label><div><strong id="goalCount">0</strong><span>/ <input id="wordGoal" type="number" min="50" max="20000" step="50" value="500"></span></div><i><b id="goalProgress"></b></i></article>
+        </div>
+        <div class="issue-summary" id="issueSummary"><span><b>0</b> long sentences</span><span><b>0</b> filler phrases</span><span><b>0</b> passive phrases</span><span><b>0</b> repeated words</span></div>
+        <div class="issues" id="issueList"><div class="empty-state"><span>✓</span><p>Specific feedback will appear here.</p><small>These are patterns to review, not automatic corrections.</small></div></div>
+      </section>
+
+      <section class="tool-panel" id="cleanupPanel" data-panel="cleanup" hidden>
+        <div class="cleanup-actions" id="cleanupActions">
+          <button type="button" data-cleanup="spacing"><span>01</span><b>Fix spacing</b><small>Extra spaces and blank lines</small></button>
+          <button type="button" data-cleanup="sentence"><span>02</span><b>Sentence case</b><small>Capitalize sentence starts</small></button>
+          <button type="button" data-cleanup="lower"><span>03</span><b>lowercase</b><small>Make every letter lowercase</small></button>
+          <button type="button" data-cleanup="upper"><span>04</span><b>UPPERCASE</b><small>Make every letter uppercase</small></button>
+          <button type="button" data-cleanup="title"><span>05</span><b>Title Case</b><small>Capitalize main words</small></button>
+          <button type="button" data-cleanup="duplicates"><span>06</span><b>Remove duplicate lines</b><small>Keep the first matching line</small></button>
+        </div>
+        <div class="cleanup-preview"><div><span>Preview</span><button id="applyCleanup" type="button" disabled>Replace text above</button></div><pre id="cleanupOutput">Choose an action to preview the result.</pre></div>
+      </section>
+
+      <section class="tool-panel" id="comparePanel" data-panel="compare" hidden>
+        <div class="compare-grid"><label>Original<span>Uses the text above</span><div id="originalPreview">Add the original draft above.</div></label><label for="revisedText">Revised draft<span>Paste the newer version</span><textarea id="revisedText" placeholder="Paste the revised draft here…"></textarea></label></div>
+        <div class="compare-actions"><button id="compareButton" type="button">Compare drafts</button><span id="compareStats">No comparison yet</span></div>
+        <article class="diff-output" id="diffOutput"><p class="empty-copy">Changes will appear here. Removed words are red; added words are green.</p></article>
+      </section>
+
+      <section class="tool-panel" id="studyPanel" data-panel="study" hidden>
+        <div class="simple-controls"><label for="summaryLength">Summary length <output id="summaryLengthOutput">3 sentences</output><input id="summaryLength" type="range" min="1" max="5" value="3"></label><button id="buildStudy" type="button">Build study pack</button></div>
+        <div class="study-grid">
+          <article><span>Extractive summary</span><div id="summaryOutput"><p class="empty-copy">Important sentences from the source will appear here.</p></div></article>
+          <article><span>Key terms</span><div class="keyword-output" id="keywordOutput"><p class="empty-copy">Frequently used terms will appear here.</p></div></article>
+          <article class="recall-card"><span>Active recall</span><ol id="recallOutput"><li>Questions will appear here.</li></ol></article>
+          <article><label for="studyNotes">Your notes <small>Saved locally</small></label><textarea id="studyNotes" placeholder="What do you want to remember?"></textarea></article>
+        </div>
+        <button class="copy-pack" id="copyStudy" type="button" disabled>Copy study pack</button>
+      </section>
+
+      <section class="tool-panel citation-panel" id="citationPanel" data-panel="citation" hidden>
+        <div class="citation-intro"><span>Common webpage citations</span><p>Enter the details you have. Leave unavailable fields blank, then check the result against your instructor’s style guide.</p></div>
+        <form id="citationForm" class="citation-form">
+          <label for="citationStyle">Style<select id="citationStyle"><option value="apa">APA 7</option><option value="mla">MLA 9</option><option value="chicago">Chicago Notes</option></select></label>
+          <label for="authorFirst">Author’s first name<input id="authorFirst" autocomplete="given-name"></label>
+          <label for="authorLast">Author’s last name<input id="authorLast" autocomplete="family-name"></label>
+          <label class="wide" for="pageTitle">Page or article title<input id="pageTitle" required></label>
+          <label class="wide" for="siteTitle">Website name<input id="siteTitle"></label>
+          <label for="publishDate">Published date<input id="publishDate" type="date"></label>
+          <label for="accessDate">Accessed date<input id="accessDate" type="date"></label>
+          <label class="wide" for="pageUrl">URL<input id="pageUrl" type="url" placeholder="https://…"></label>
+          <button type="submit">Format citation</button>
+        </form>
+        <article class="citation-output"><span>Formatted citation</span><p id="citationOutput">Your citation will appear here.</p><button id="copyCitation" type="button" disabled>Copy citation</button></article>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

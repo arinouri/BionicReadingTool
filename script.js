@@ -1,86 +1,77 @@
-// ---------- THEME TOGGLE WITH PERSISTENCE ----------
+const $ = (selector, root = document) => root.querySelector(selector);
+const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+
+const intro = $('#intro');
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+function closeIntro() {
+  if (!intro || intro.classList.contains('out')) return;
+  intro.classList.add('out');
+  document.body.classList.remove('intro-playing');
+  window.setTimeout(() => intro.remove(), reducedMotion.matches ? 0 : 520);
+}
+
+if (intro) {
+  document.body.classList.add('intro-playing');
+  if (reducedMotion.matches) closeIntro();
+  else window.setTimeout(closeIntro, 2050);
+  $('#skipIntro').addEventListener('click', closeIntro);
+}
+
+const storedTheme = localStorage.getItem('readeasier-theme');
+const initialTheme = storedTheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
 
 function applyTheme(theme) {
-  const body = document.body;
-  const toggle = document.getElementById("modeToggle");
-
-  body.classList.remove("dark", "light");
-  body.classList.add(theme);
-
+  document.body.classList.toggle('dark', theme === 'dark');
+  const toggle = $('#themeToggle');
   if (toggle) {
-    toggle.textContent = theme === "dark" ? "🌙" : "☀️";
+    toggle.textContent = theme === 'dark' ? 'Light' : 'Dark';
+    toggle.setAttribute('aria-label', `Use ${theme === 'dark' ? 'light' : 'dark'} theme`);
   }
 }
 
-function initTheme() {
-  const stored = localStorage.getItem("readeasier-theme");
-  const prefersDark =
-    window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-  const theme = stored || (prefersDark ? "dark" : "light");
+applyTheme(initialTheme);
+$('#themeToggle')?.addEventListener('click', () => {
+  const theme = document.body.classList.contains('dark') ? 'light' : 'dark';
   applyTheme(theme);
+  localStorage.setItem('readeasier-theme', theme);
+});
+
+const revealObserver = 'IntersectionObserver' in window
+  ? new IntersectionObserver(entries => entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    }), { threshold: 0.08 })
+  : null;
+
+$$('.reveal').forEach(element => revealObserver ? revealObserver.observe(element) : element.classList.add('visible'));
+
+const search = $('#toolSearch');
+const cards = $$('.tool-card');
+const filterButtons = $$('.filter-bar button');
+let currentFilter = 'all';
+
+function filterTools() {
+  const query = (search?.value || '').trim().toLowerCase();
+  let visible = 0;
+  cards.forEach(card => {
+    const categoryMatch = currentFilter === 'all' || card.dataset.category === currentFilter;
+    const searchText = `${card.textContent} ${card.dataset.search || ''}`.toLowerCase();
+    const queryMatch = !query || searchText.includes(query);
+    card.hidden = !(categoryMatch && queryMatch);
+    if (!card.hidden) visible += 1;
+  });
+  $('#toolCount').textContent = `${visible} ${visible === 1 ? 'tool' : 'tools'}`;
+  $('#noResults').hidden = visible !== 0;
 }
 
-function toggleMode() {
-  const isCurrentlyDark = document.body.classList.contains("dark");
-  const nextTheme = isCurrentlyDark ? "light" : "dark";
-  applyTheme(nextTheme);
-  localStorage.setItem("readeasier-theme", nextTheme);
-}
+search?.addEventListener('input', filterTools);
+filterButtons.forEach(button => button.addEventListener('click', () => {
+  currentFilter = button.dataset.filter;
+  filterButtons.forEach(item => item.classList.toggle('active', item === button));
+  filterTools();
+}));
 
-// Initialize theme once DOM is ready (script is at end of body, so DOM is loaded)
-initTheme();
-
-// ---------- TYPEWRITER EFFECT ----------
-
-const words = [
-  "Bionic Reading",
-  "Spritz Reader",
-  "Chunking",
-  "Text-to-Speech",
-  "Line Highlighting",
-  "Reader View",
-  "Colored Overlays",
-];
-
-const typedText = document.getElementById("typedText");
-let wordIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
-
-const typingSpeed = 90;
-const deletingSpeed = 45;
-const pauseBetweenWords = 1500;
-
-function typeEffect() {
-  if (!typedText) return;
-
-  const currentWord = words[wordIndex];
-
-  if (!isDeleting) {
-    typedText.textContent = currentWord.substring(0, charIndex + 1);
-    charIndex++;
-
-    if (charIndex === currentWord.length) {
-      isDeleting = true;
-      setTimeout(typeEffect, pauseBetweenWords);
-      return;
-    }
-  } else {
-    typedText.textContent = currentWord.substring(0, charIndex - 1);
-    charIndex--;
-
-    if (charIndex === 0) {
-      isDeleting = false;
-      wordIndex = (wordIndex + 1) % words.length;
-      setTimeout(typeEffect, 500);
-      return;
-    }
-  }
-
-  setTimeout(typeEffect, isDeleting ? deletingSpeed : typingSpeed);
-}
-
-// Start the typing effect with a short delay
-setTimeout(typeEffect, 700);
+$('#year').textContent = new Date().getFullYear();

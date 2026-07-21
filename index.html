@@ -1,141 +1,151 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Read Easier - Assistive Reading Tools</title>
-  <meta name="description" content="Free, browser-based assistive reading tools like Bionic Reading, Spritz, TTS, line highlighting, and overlays — built for focus, accessibility, and neurodiverse readers.">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f2ec">
+  <meta name="description" content="Free browser-based tools for focused reading, clearer writing, text-to-speech, study notes, and citations.">
+  <meta property="og:title" content="ReadEasier — Free reading and writing tools">
+  <meta property="og:description" content="Useful tools for working with text. No account, uploads, or locked results.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://readeasier.ca/">
+  <meta property="og:image" content="https://readeasier.ca/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>ReadEasier — Free reading and writing tools</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
-<body class="dark">
-  <button id="modeToggle" type="button" aria-label="Toggle light and dark mode" onclick="toggleMode()">🌙</button>
+<body>
+  <a class="skip-link" href="#tools">Skip to tools</a>
 
-  <header class="hero">
-    <div class="hero-inner">
-      <p class="eyebrow">Free, private & in-browser</p>
-      <h1>Read Easier</h1>
-      <p class="tagline">
-        Assistive reading tools for neurodiverse readers, students, and anyone who wants calmer pages.
-      </p>
-      <p class="description">
-        Mix and match tools like <span id="typedText"></span> to make any text easier to scan, hear, and focus on.
-      </p>
+  <div class="intro" id="intro" role="dialog" aria-label="ReadEasier introduction">
+    <div class="intro-brand"><span>R</span> ReadEasier</div>
+    <div class="intro-words" aria-hidden="true">
+      <span>Read.</span><span>Write.</span><span>Focus.</span>
+    </div>
+    <div class="intro-progress"><i></i></div>
+    <button id="skipIntro" type="button">Skip</button>
+  </div>
 
-      <div class="hero-cta">
-        <a href="#tools" class="btn primary-btn">Browse all tools</a>
-        <a href="bionic/index.html" class="btn ghost-btn">Start with Bionic Reading</a>
-      </div>
-
-      <div class="hero-badges">
-        <span class="badge">No login</span>
-        <span class="badge">No tracking</span>
-        <span class="badge">100% free</span>
-      </div>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="ReadEasier home"><span>R</span><b>ReadEasier</b></a>
+    <nav aria-label="Primary navigation"><a href="#tools">Tools</a><a href="#about">About</a><a href="privacy.html">Privacy</a></nav>
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Use dark theme">Dark</button>
+      <a class="button small" href="studio/?tool=focus">Open workspace <span>↗</span></a>
     </div>
   </header>
 
-  <main id="tools" class="layout">
-    <section class="grid" aria-label="Assistive reading tools">
-      <a href="bionic/index.html" class="tool">
-        <div class="tool-header">
-          <h3>Bionic Reading</h3>
-          <span class="tool-tag">Visual focus</span>
+  <main>
+    <section class="hero">
+      <div class="hero-copy reveal">
+        <p class="kicker"><span></span> Free · private · runs in your browser</p>
+        <h1>Tools for working<br>with <em>text.</em></h1>
+        <p class="hero-text">Read aloud. Keep your place. Check a draft. Build a citation. Use what you need without an account or a paywall.</p>
+        <div class="hero-actions">
+          <a class="button" href="studio/?tool=focus">Open the workspace <span>↗</span></a>
+          <a class="plain-link" href="#tools">See every tool <span>↓</span></a>
         </div>
-        <p>Boldens the first part of words to guide your eyes and gently boost reading speed.</p>
-      </a>
+        <div class="hero-notes"><span>No login</span><span>No text uploads</span><span>No daily limit</span></div>
+      </div>
 
-      <a href="spritz/index.html" class="tool">
-        <div class="tool-header">
-          <h3>Spritz Reader</h3>
-          <span class="tool-tag">Paced</span>
+      <div class="hero-preview reveal" aria-label="Preview of the ReadEasier workspace">
+        <div class="preview-top"><span>Workspace</span><small>Saved locally</small></div>
+        <div class="preview-body">
+          <div class="preview-tabs"><b class="active">Read</b><b>Write</b><b>Study</b></div>
+          <div class="preview-paper">
+            <span>FOCUS READER</span>
+            <p>Clear pages make it easier to stay with the sentence you are reading.</p>
+            <p class="preview-muted">Adjust the text, listen along, or move through one section at a time.</p>
+            <div class="preview-line"></div>
+          </div>
+          <div class="preview-controls">
+            <span><i>▶</i> Read aloud</span><span>Size <b>20</b></span><span>Spacing <b>1.7</b></span>
+          </div>
         </div>
-        <p>Shows one word at a time so you can focus without scrolling or losing your place.</p>
-      </a>
+        <div class="preview-sticker">12 useful tools.<br><b>All free.</b></div>
+      </div>
+    </section>
 
-      <a href="chunking/index.html" class="tool">
-        <div class="tool-header">
-          <h3>Chunking</h3>
-          <span class="tool-tag">Structure</span>
-        </div>
-        <p>Breaks long paragraphs into short, readable blocks that are easier on the brain.</p>
-      </a>
+    <section class="start-section" aria-labelledby="startTitle">
+      <div class="section-label">Choose a starting point</div>
+      <h2 id="startTitle">What are you<br>working on?</h2>
+      <div class="start-list">
+        <a href="studio/?tool=focus" class="start-row reveal"><span>01</span><div><h3>Reading</h3><p>Listen, focus a line, change the page, or read in smaller sections.</p></div><b>6 tools</b><i>↗</i></a>
+        <a href="studio/?tool=clarity" class="start-row reveal"><span>02</span><div><h3>Writing</h3><p>Check readability, find repeated wording, clean text, and compare drafts.</p></div><b>4 tools</b><i>↗</i></a>
+        <a href="studio/?tool=study" class="start-row reveal"><span>03</span><div><h3>Study & sources</h3><p>Pull out key ideas, make recall questions, and format webpage citations.</p></div><b>2 tools</b><i>↗</i></a>
+      </div>
+    </section>
 
-      <a href="tts/index.html" class="tool">
-        <div class="tool-header">
-          <h3>Text-to-Speech</h3>
-          <span class="tool-tag">Audio</span>
-        </div>
-        <p>Reads your text aloud with system voices — great for listening while following along.</p>
-      </a>
+    <section class="tools-section" id="tools" aria-labelledby="toolsTitle">
+      <div class="tools-heading">
+        <div><p class="kicker"><span></span> The tool hub</p><h2 id="toolsTitle">Everything,<br>in one place.</h2></div>
+        <div class="tool-search-wrap"><label for="toolSearch">Find a tool</label><input id="toolSearch" type="search" placeholder="Try “read aloud” or “citation”"><span id="toolCount">12 tools</span></div>
+      </div>
+      <div class="filter-bar" role="group" aria-label="Filter tools"><button class="active" type="button" data-filter="all">All</button><button type="button" data-filter="read">Read</button><button type="button" data-filter="write">Write</button><button type="button" data-filter="study">Study</button></div>
 
-      <a href="highlight/index.html" class="tool">
-        <div class="tool-header">
-          <h3>Line Highlighting</h3>
-          <span class="tool-tag">Focus</span>
-        </div>
-        <p>Moves a highlight bar line by line to help you keep your place and reduce distractions.</p>
-      </a>
+      <div class="tool-grid" id="toolGrid">
+        <a class="tool-card reveal" href="studio/?tool=focus" data-category="read" data-search="focus reader line highlight visual settings spacing theme">
+          <span class="tool-index">01</span><div class="tool-mark">Aa</div><div><small>Reading</small><h3>Focus reader</h3><p>Comfortable text, sentence focus, reading ruler, and display controls.</p></div><i>↗</i>
+        </a>
+        <a class="tool-card reveal" href="studio/?tool=listen" data-category="read" data-search="text to speech tts read aloud voice highlight listen">
+          <span class="tool-index">02</span><div class="tool-mark">▶</div><div><small>Reading</small><h3>Listen & follow</h3><p>Device voices with sentence highlighting, speed, and navigation.</p></div><i>↗</i>
+        </a>
+        <a class="tool-card reveal" href="studio/?tool=bionic" data-category="read" data-search="bionic reading bold word anchors visual focus">
+          <span class="tool-index">03</span><div class="tool-mark"><b>Ab</b></div><div><small>Reading</small><h3>Word anchors</h3><p>Bold the beginning of words and choose how strong the emphasis is.</p></div><i>↗</i>
+        </a>
+        <a class="tool-card reveal" href="studio/?tool=chunk" data-category="read" data-search="chunk text sections paragraph focus flow">
+          <span class="tool-index">04</span><div class="tool-mark">¶</div><div><small>Reading</small><h3>Chunk reader</h3><p>Break a long passage into smaller sections and move one at a time.</p></div><i>↗</i>
+        </a>
+        <a class="tool-card reveal" href="studio/?tool=pace" data-category="read" data-search="speed reader spritz pace one word wpm">
+          <span class="tool-index">05</span><div class="tool-mark">1×</div><div><small>Reading</small><h3>Paced reader</h3><p>Show one word at a time at a speed you control.</p></div><i>↗</i>
+        </a>
+        <a class="tool-card reveal" href="studio/?tool=focus&amp;settings=1" data-category="read" data-search="colour overlay dark mode font spacing visual controls dyslexia">
+          <span class="tool-index">06</span><div class="tool-mark">◐</div><div><small>Reading</small><h3>Visual controls</h3><p>Adjust page colour, text size, spacing, width, and contrast.</p></div><i>↗</i>
+        </a>
+        <a class="tool-card reveal" href="studio/?tool=clarity" data-category="write" data-search="clarity grammar readability long sentence passive voice adverbs repeated words">
+          <span class="tool-index">07</span><div class="tool-mark">✓</div><div><small>Writing</small><h3>Clarity check</h3><p>Find long sentences, fillers, passive phrasing, and repetition.</p></div><i>↗</i>
+        </a>
+        <a class="tool-card reveal" href="studio/?tool=clarity&amp;stats=1" data-category="write" data-search="word counter character count sentence reading time goal">
+          <span class="tool-index">08</span><div class="tool-mark">123</div><div><small>Writing</small><h3>Word counter</h3><p>Words, characters, sentences, reading time, and a writing goal.</p></div><i>↗</i>
+        </a>
+        <a class="tool-card reveal" href="studio/?tool=cleanup" data-category="write" data-search="text cleanup case converter spaces duplicate lines format">
+          <span class="tool-index">09</span><div class="tool-mark">⌫</div><div><small>Writing</small><h3>Text cleanup</h3><p>Fix spacing, change case, and remove duplicate lines.</p></div><i>↗</i>
+        </a>
+        <a class="tool-card reveal" href="studio/?tool=compare" data-category="write" data-search="compare drafts difference diff revision editing">
+          <span class="tool-index">10</span><div class="tool-mark">±</div><div><small>Writing</small><h3>Compare drafts</h3><p>See what changed between two versions without uploading either one.</p></div><i>↗</i>
+        </a>
+        <a class="tool-card reveal" href="studio/?tool=study" data-category="study" data-search="summary key terms active recall questions study pack">
+          <span class="tool-index">11</span><div class="tool-mark">◎</div><div><small>Study</small><h3>Study pack</h3><p>Make a short extractive summary, key terms, and recall questions.</p></div><i>↗</i>
+        </a>
+        <a class="tool-card reveal" href="studio/?tool=citation" data-category="study" data-search="citation reference webpage apa mla chicago source bibliography">
+          <span class="tool-index">12</span><div class="tool-mark">“ ”</div><div><small>Sources</small><h3>Web citation builder</h3><p>Format common webpage citations in APA, MLA, or Chicago style.</p></div><i>↗</i>
+        </a>
+      </div>
+      <p class="no-results" id="noResults" hidden>No matching tool. Try a simpler search.</p>
+    </section>
 
-      <a href="reader/index.html" class="tool">
-        <div class="tool-header">
-          <h3>Reader View</h3>
-          <span class="tool-tag">Clean-up</span>
-        </div>
-        <p>Strips away cluttered HTML, ads, and extra styling to leave clean, readable text.</p>
-      </a>
+    <section class="reason-section" id="about" aria-labelledby="reasonTitle">
+      <div class="reason-copy reveal"><p class="kicker"><span></span> Why these tools</p><h2 id="reasonTitle">Common requests.<br>Simple software.</h2></div>
+      <div class="reason-details reveal">
+        <p>People regularly ask for text-to-speech with highlighting, distraction-free reading, basic writing insights, and citation formatting without subscriptions or premium prompts. ReadEasier keeps those functions small, local, and available.</p>
+        <ul><li>Text stays in this browser.</li><li>Results are never blurred or locked.</li><li>No AI-generated rewrite replaces your wording.</li><li>Every control works without signing in.</li></ul>
+        <p class="research-links"><a href="https://www.reddit.com/r/ADHD/comments/1ngab5e" target="_blank" rel="noopener">TTS and highlighting discussion ↗</a><a href="https://www.reddit.com/r/productivity/comments/1qqktvl" target="_blank" rel="noopener">Writing-tool paywall discussion ↗</a></p>
+      </div>
+    </section>
 
-      <a href="overlay/index.html" class="tool">
-        <div class="tool-header">
-          <h3>Colored Overlays</h3>
-          <span class="tool-tag">Comfort</span>
-        </div>
-        <p>Applies color filters that can reduce visual stress and help with dyslexia symptoms.</p>
-      </a>
-
-      <article class="tool about" aria-label="About Read Easier">
-        <h3>About Read Easier</h3>
-        <p>
-          Read Easier is a collection of small, free tools built for neurodiverse readers,
-          students with ADHD, dyslexia, or anyone who wants text to feel less overwhelming.
-        </p>
-        <p>
-          • 100% client-side (no data collection)<br>
-          • Works in any modern browser<br>
-          • Open-source on <a href="https://github.com/arinouri" target="_blank" rel="noopener">GitHub</a>
-        </p>
-        <p class="about-meta">
-          Created by <a href="https://github.com/arinouri" target="_blank" rel="noopener">Arian Nouri</a><br />
-          <a href="tos.html">Terms</a> · <a href="privacy.html">Privacy</a><br />
-          &copy; 2025 Read Easier
-        </p>
-      </article>
-
-      <article class="tool donate" aria-label="Support Read Easier">
-        <h3>Support the project</h3>
-        <p>
-          If Read Easier helps you or your students, you can keep it online and growing
-          by buying me a coffee 💛
-        </p>
-        <form action="https://www.paypal.com/ncp/payment/WR7SHAP7JP2JJ" method="post" target="_blank">
-          <input type="hidden" name="business" value="arinouri.ca@gmail.com">
-          <input type="hidden" name="no_recurring" value="0">
-          <input type="hidden" name="currency_code" value="CAD">
-          <button type="submit" class="btn donate-btn">
-            Donate with PayPal
-          </button>
-        </form>
-        <p class="donate-small">
-          Even small amounts help cover hosting and give me time to build more tools.
-        </p>
-      </article>
+    <section class="privacy-band">
+      <div><span>Private by default</span><h2>Your text stays on your device.</h2></div>
+      <p>The reading and writing tools run in your browser. Drafts are saved locally only when you choose to keep them there.</p>
+      <a href="privacy.html">Read the privacy note <span>↗</span></a>
     </section>
   </main>
 
-  <footer>
-    <p>Made with ❤️ for accessibility, focus, and neurodiverse brains.</p>
-    <small>&copy; 2025 Read Easier Project</small>
+  <footer class="site-footer">
+    <a class="brand footer-brand" href="index.html"><span>R</span><b>ReadEasier</b></a>
+    <p>Free browser-based reading and writing tools.</p>
+    <nav aria-label="Footer navigation"><a href="studio/">Workspace</a><a href="privacy.html">Privacy</a><a href="tos.html">Terms</a><a href="https://github.com/arinouri/BionicReadingTool" target="_blank" rel="noopener">GitHub ↗</a></nav>
+    <small>© <b id="year"></b> ReadEasier · Created by Arian Nouri</small>
   </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
