@@ -1,67 +1,23 @@
-# Read Easier 🧠  
-A collection of browser-based assistive reading tools designed to improve focus, speed, and accessibility — built for neurodiverse users, educators, and everyday readers.
+# ReadEasier
 
----
+ReadEasier is a free, client-side reading and writing tool hub. The production site is served through GitHub Pages at [readeasier.ca](https://readeasier.ca).
 
-## 🔧 Features
+## Included tools
 
-Each tool runs 100% client-side (no data collection or tracking). Tools include:
+- Focus reader with display controls, a reading ruler, word anchors, and sentence-highlighted text-to-speech
+- Adjustable word anchors, chunked reading, and a paced one-word reader
+- Readability and clarity checks, word counts and goals, local text cleanup, and draft comparison
+- Extractive summaries, key terms, active-recall prompts, notes, and common webpage citation formatting
 
-- **📚 Bionic Reading** – Bolds parts of each word to guide your eyes and boost reading speed.
-- **🎯 Spritz Reader** – Displays one word at a time for maximum focus.
-- **📖 Chunking** – Breaks long paragraphs into manageable chunks.
-- **🔊 Text-to-Speech (TTS)** – Reads text aloud with adjustable voices and speed.
-- **🟩 Line Highlighting** – Moves a highlight bar line by line to keep you on track.
-- **🧹 Reader View** – Cleans up cluttered HTML or copied content for easier reading.
-- **🎨 Colored Overlays** – Applies color filters to reduce visual stress and dyslexia effects.
+## Privacy
 
----
+Text processing is performed in the browser. Drafts and preferences use local browser storage; there is no account or application database.
 
-## 🌙 Light/Dark Mode
+## Structure
 
-All pages support light/dark mode toggling. Your preference stays active until the next session.
+- `index.html`, `style.css`, `script.js` — public homepage
+- `studio/` — unified interactive workspace
+- legacy tool paths redirect into the matching workspace tool so existing bookmarks keep working
+- `privacy.html`, `tos.html` — project policies
 
----
-
-## 🚀 Getting Started
-
-### 1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/read-easier.git
-cd read-easier
-```
-2. Run locally (recommended):
-Use the VS Code Live Server extension or Python’s built-in server:
-
-bash
-Copy
-Edit
-python3 -m http.server
-Visit: http://localhost:8000
-
-📁 Project Structure
-bash
-Copy
-Edit
-read-easier/
-# ├── index.html           ← Homepage with tool links
-# ├── style.css            ← Global styles for homepage
-# ├── tos.html             ← Terms of Service
-# ├── privacy.html         ← Privacy Policy
-# ├── /bionic/
-# │   ├── index.html
-# │   ├── css/bionic.css
-# │   └── js/bionic.js
-# ├── /spritz/
-# │   └── ...
-# ├── /chunking/
-# │   └── ...
-# ├── /tts/
-# │   └── ...
-# └── ...
-
-
-Creator
-Arian Nouri
-💻 GitHub: @arinouri
-📬 Contact: arinouri.ca@gmail.com
+No build step or external package is required. Serve the repository root with a static server for local development.

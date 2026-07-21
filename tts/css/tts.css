@@ -1,0 +1,203 @@
+:root {
+  --bg-dark: #050608;
+  --bg-light: #f4f4f7;
+
+  --text-dark: #f9fafb;
+  --text-light: #111827;
+
+  --card-dark: #111827;
+  --card-light: #ffffff;
+
+  --border-dark: #1f2937;
+  --border-light: #d1d5db;
+
+  --accent: #6ec1e4;
+}
+
+/* GLOBAL LAYOUT */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 16px 40px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.dark {
+  background: radial-gradient(circle at top, #111827 0, #020617 60%);
+  color: var(--text-dark);
+}
+
+body.light {
+  background: radial-gradient(circle at top, #ffffff 0, #e5e7eb 60%);
+  color: var(--text-light);
+}
+
+/* WIDTH */
+
+h1,
+p,
+.controls,
+textarea,
+a,
+footer {
+  width: min(900px, 100%);
+}
+
+/* HEADER & DESCRIPTION */
+
+h1 {
+  margin: 0 0 8px;
+  font-size: 2rem;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+p {
+  margin: 0 0 18px;
+  font-size: 0.95rem;
+  opacity: 0.9;
+  text-align: center;
+}
+
+/* MAIN CARD FEEL */
+
+textarea,
+.controls {
+  max-width: 900px;
+}
+
+textarea {
+  width: 100%;
+  min-height: 140px;
+  border-radius: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.75);
+  padding: 14px 12px;
+  resize: vertical;
+  font-size: 1rem;
+  font-family: inherit;
+  background: rgba(15, 23, 42, 0.85);
+  color: var(--text-dark);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+body.light textarea {
+  background: #ffffff;
+  color: var(--text-light);
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.12);
+}
+
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px rgba(110, 193, 228, 0.6);
+}
+
+/* CONTROLS */
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 14px;
+}
+
+.controls select,
+.controls input {
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.75);
+  background: rgba(15, 23, 42, 0.95);
+  color: inherit;
+  font-size: 0.9rem;
+  min-width: 140px;
+}
+
+body.light .controls select,
+body.light .controls input {
+  background: #ffffff;
+}
+
+.controls button {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.75);
+  background: rgba(15, 23, 42, 0.95);
+  color: inherit;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: transform 0.1s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+body.light .controls button {
+  background: #ffffff;
+}
+
+.controls button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.5);
+}
+
+/* LINK & FOOTER */
+
+a {
+  margin-top: 22px;
+  font-size: 0.9rem;
+  color: var(--accent);
+  text-decoration: none;
+  text-align: center;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  margin-top: 26px;
+  font-size: 0.85rem;
+  text-align: center;
+  opacity: 0.75;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 640px) {
+  body {
+    padding-top: 24px;
+  }
+
+  h1 {
+    font-size: 1.7rem;
+  }
+
+  textarea {
+    min-height: 130px;
+  }
+
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .controls button,
+  .controls select,
+  .controls input {
+    width: 100%;
+  }
+}
